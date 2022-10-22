@@ -10,7 +10,6 @@ class ArtistsController < ApplicationController
   private
  
   def set_artist
-    @hire = Hire.new
     @artist = Artist.find(artist_params)
   end
 
