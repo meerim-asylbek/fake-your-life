@@ -1,2 +1,8 @@
-<h1>Artists#index</h1>
-<p>Find me in app/views/artists/index.html.erb</p>
+<div class="container">
+  <h1>Fake your life</h1>
+  <% @artists.each do |artist| %>
+    <p><%= artist.name %></p>
+    <%= link_to 'show', artist_path(artist) %>
+  <% end %>
+</div>
+
