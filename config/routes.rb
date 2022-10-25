@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  devise_for :users
   root to: "pages#home"
   resources :artists, only: %i[index show] do
     resources :reviews, only: %i[create]

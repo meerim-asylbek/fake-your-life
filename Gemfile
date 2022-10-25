@@ -79,3 +79,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+
+##### Custom gems #####
+# Authenticate users
+gem "devise"
