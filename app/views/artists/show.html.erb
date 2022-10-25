@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <h1><%= @artist.name %></h1>
+  <small>Category: <%= @artist.category %></small>
+  <div class="container">
+    <h3>description:</h3>
+    <p><%= @artist.description %></p>
+    <h3>Price:</h3>
+    <p><%= @artist.price %></p>
+    <h3>Address:</h3>
+    <p><%= @artist.address %></p>
+    <h3>Age:</h3>
+    <p><%= @artist.age.to_s %></p>
+  </div>
+</div>
+

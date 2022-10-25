@@ -11,7 +11,17 @@
   </head>
 
   <body>
-   <%= render "shared/flashes" %>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-auto bg-light">
+          <%= render 'shared/sidebar' %>
+        </div>
+        <div class="col p-0 min-vh-100">
+          <%= render 'shared/navbar' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  <%= render "shared/flashes" %>
   </body>
 </html>
