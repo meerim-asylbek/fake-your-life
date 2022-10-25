@@ -1,0 +1,24 @@
+<div class="d-flex sticky-top min-vh-100">
+    <ul class="nav flex-column mx-auto text-center align-items-center justify-content-around">
+        <li class="nav-item">
+          <%= link_to "#", class: "navbar-brand" do %>
+            <%= image_tag "logo.png", width: "48" %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+           <%= link_to artists_path do %> 
+               <i class="fa-solid fa-house"></i>
+           <% end %>
+        </li>
+        <li class="nav-item">
+            <%= link_to artists_path do %> 
+                <i class="fa-solid fa-star"></i>
+            <% end %>
+        </li>
+        <li>
+            <%= link_to artists_path do %> 
+                <i class="fa-solid fa-list"></i>
+            <% end %>
+        </li>
+    </ul>
+</div>

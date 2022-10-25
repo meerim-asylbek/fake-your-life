@@ -1,8 +1,16 @@
-<div class="container">
+<div class="container mt-3">
   <h1>Fake your life</h1>
-  <% @artists.each do |artist| %>
-    <p><%= artist.name %></p>
-    <%= link_to 'show', artist_path(artist) %>
-  <% end %>
+  <div class="container d-flex mt-3">
+    <button type="button" class="btn btn-outline-primary">Boyfriend</button>
+    <button type="button" class="btn btn-outline-primary">Girlfriend</button>
+    <button type="button" class="btn btn-outline-primary">Familie</button>
+    <button type="button" class="btn btn-outline-primary">Friends</button>
+  </div>
+  <div class="container mt-3">
+    <% @artists.each do |artist| %>
+      <p><%= artist.name %></p>
+      <%= link_to 'show', artist_path(artist) %>
+    <% end %>
+  </div>
 </div>
 

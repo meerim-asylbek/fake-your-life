@@ -11,6 +11,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-auto bg-light">
+          <%= render 'shared/sidebar' %>
+        </div>
+        <div class="col p-0 min-vh-100">
+          <%= render 'shared/navbar' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
