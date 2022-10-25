@@ -14,20 +14,20 @@ Add.destroy_all
 
 puts "Database cleaned"
 
-10.times do
+#10.times do
 
-  Artist.create(
-    name: Faker::Name.unique.name,
-    category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
-    address: Faker::Address.full_address,
-    description: Faker::TvShows::Friends.quote,
-    price: rand(20..1000),
-    age: rand(18..100)
-  )
+  #Artist.create(
+    #name: Faker::Name.unique.name,
+    #category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
+    #address: Faker::Address.full_address,
+    #description: Faker::TvShows::Friends.quote,
+    #price: rand(20..1000),
+    #age: rand(18..100)
+  #)
 
-end
+#end
 
-puts "Artists created"
+#puts "Artists created"
 
 Add.create(
   name: "Horse",
