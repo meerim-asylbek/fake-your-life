@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_26_174250) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_26_175202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_174250) do
     t.string "last_name"
     t.string "address"
     t.integer "age"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
   create_table "hires", force: :cascade do |t|
@@ -77,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_174250) do
   end
 
   add_foreign_key "artists", "users"
+  add_foreign_key "customers", "users"
   add_foreign_key "hires", "artists"
   add_foreign_key "hires", "customers"
   add_foreign_key "reviews", "artists"
