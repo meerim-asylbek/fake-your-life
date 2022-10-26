@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema[7.0].define(version: 2022_10_26_171605) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_26_174250) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,11 +35,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_171605) do
     t.index ["user_id"], name: "index_artists_on_user_id"
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.integer "age"
+  end
+
   create_table "hires", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "artist_id", null: false
+    t.bigint "customer_id", null: false
     t.index ["artist_id"], name: "index_hires_on_artist_id"
+    t.index ["customer_id"], name: "index_hires_on_customer_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -48,10 +58,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_171605) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.bigint "artist_id", null: false
+    t.bigint "customer_id", null: false
     t.index ["artist_id"], name: "index_reviews_on_artist_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["customer_id"], name: "index_reviews_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,9 +76,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_26_171605) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "hires", "artists"
   add_foreign_key "artists", "users"
+  add_foreign_key "hires", "artists"
+  add_foreign_key "hires", "customers"
   add_foreign_key "reviews", "artists"
-  add_foreign_key "reviews", "users"
-
+  add_foreign_key "reviews", "customers"
 end
