@@ -1,8 +1,9 @@
 class Artist < ApplicationRecord
   #has_many :hires, dependent: :destroy
   #has_many :accesories, through: :hires
-  #has_many :reviews, dependent: :destroy
   #has_many_attached :photos
+  belongs_to :user
+  has_many :reviews
 
   validates :name, presence: true, length: { in: 6..199, too_long: "%{count} characters is the maximun allowed", too_short: "%{count} characters is the minimum allowed" }, allow_blank: false
   validates :category, presence: true, allow_blank: false

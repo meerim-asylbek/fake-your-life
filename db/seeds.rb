@@ -11,23 +11,49 @@ puts "Cleaning up database..."
 
 Artist.destroy_all
 Add.destroy_all
+User.destroy_all
 
 puts "Database cleaned"
 
-#10.times do
+User.create(
+  email: 'sebastian@fakeyourlife.com',
+  password: '123456'
+)
 
-  #Artist.create(
-    #name: Faker::Name.unique.name,
-    #category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
-    #address: Faker::Address.full_address,
-    #description: Faker::TvShows::Friends.quote,
-    #price: rand(20..1000),
-    #age: rand(18..100)
-  #)
+User.create(
+  email: 'meerim@fakeyourlife.com',
+  password: '123456'
 
-#end
+)
 
-#puts "Artists created"
+User.create(
+  email: 'sebas@fakeyourlife.com',
+  password: '123456'
+)
+
+User.create(
+  email: 'meer@fakeyourlife.com',
+  password: '123456'
+)
+
+
+puts "Users created"
+
+User.all.each do |user|
+  2.times do
+    Artist.create(
+      name: Faker::Name.unique.name,
+      category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
+      address: Faker::Address.full_address,
+      description: Faker::TvShows::Friends.quote,
+      price: rand(20..1000),
+      age: rand(18..100),
+      user_id: user.id
+    )
+  end
+end
+
+puts "Artists created"
 
 Add.create(
   name: "Horse",
