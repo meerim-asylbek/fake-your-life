@@ -1,12 +1,14 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+.navbar-fake{
+  height: 45px;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-fake .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
+.search-fake {
+  width: 70vw;
+}
+.navside-fake {
+  width: 60px;
 }
