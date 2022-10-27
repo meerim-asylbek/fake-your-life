@@ -1,10 +1,14 @@
 <div class="container mt-3">
   <h1>Fake your life</h1>
-  <div class="container d-flex mt-3">
-    <button type="button" class="btn btn-outline-primary">Boyfriend</button>
-    <button type="button" class="btn btn-outline-primary">Girlfriend</button>
-    <button type="button" class="btn btn-outline-primary">Familie</button>
-    <button type="button" class="btn btn-outline-primary">Friends</button>
+  <div class="row d-flex mt-3">
+    <div class="col-12 col-sm-6 col-md-4 mb-4">
+      <div class="card-category text-center" data-aos-anchor-placement="bottom" data-aos="zoom-in" style="background-image: url(<%= image_path('boyfriend.png') %>)">
+            <button type="button" class="btn btn-outline-primary">Boyfriend</button>
+      </div>
+      <button type="button" class="btn btn-outline-primary">Girlfriend</button>
+      <button type="button" class="btn btn-outline-primary">Familie</button>
+      <button type="button" class="btn btn-outline-primary">Friends</button>
+    </div>
   </div>
   <div class="container mt-3">
     <% @artists.each do |artist| %>
@@ -14,3 +18,22 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h3 class="mb-0">My Lists</h3>
+  </div>
+
+  <hr class="mb-5">
+
+  <div class="row">
+    <% @artists.each do |artist| %>
+      <div class="co-12 col-sm-6 col-md-4 mb-4">
+        <%= link_to artist_path(artist), class:"text-decoration-none" do %>
+          <div class="card-category text-center" data-aos-anchor-placement="bottom" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('boyfriend.png') %>)">
+            <%= artist.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
