@@ -1,39 +1,60 @@
-<div class="container mt-3">
-  <h1>Fake your life</h1>
-  <div class="row d-flex mt-3">
-    <div class="col-12 col-sm-6 col-md-4 mb-4">
-      <div class="card-category text-center" data-aos-anchor-placement="bottom" data-aos="zoom-in" style="background-image: url(<%= image_path('boyfriend.png') %>)">
-            <button type="button" class="btn btn-outline-primary">Boyfriend</button>
-      </div>
-      <button type="button" class="btn btn-outline-primary">Girlfriend</button>
-      <button type="button" class="btn btn-outline-primary">Familie</button>
-      <button type="button" class="btn btn-outline-primary">Friends</button>
+<div class="container my-4">
+  <h1 class="text-center my-3">Filter your category</h1>
+  <hr class="mb-5">
+  <div class="row mx-5 px-5">
+    <div class="card-category col-12 col-sm-6 col-md-3 mb-4" data-aos-anchor-placement="bottom" data-aos="zoom-in">
+      <div class="rectangle" style="background: rgb(26,66,64); background: linear-gradient(0deg, rgba(26,66,64,1) 0%, rgba(56,140,134,0.1) 100%);"></div>
+      <%= image_tag('boyfriend.png') %>
+      <h2>Boyfriend</h2>
+    </div>
+    <div class="card-category col-12 col-sm-6 col-md-3 mb-4" data-aos-anchor-placement="bottom" data-aos="zoom-in">
+      <div class="rectangle" style="background: rgb(82,109,125); background: linear-gradient(0deg, rgba(82,109,125,1) 0%, rgba(157,210,241,0.1) 100%);"></div>
+      <%= image_tag('girlfriend.png') %>
+      <h2>Girlfriend</h2>
+    </div>
+    <div class="card-category col-12 col-sm-6 col-md-3 mb-4" data-aos-anchor-placement="bottom" data-aos="zoom-in">
+      <div class="rectangle" style="background: rgb(122,96,47); background: linear-gradient(0deg, rgba(122,96,47,1) 0%, rgba(255,199,99,0.1) 100%);"></div>
+      <%= image_tag('family.png') %>
+      <h2>Family</h2>
+    </div>
+    <div class="card-category col-12 col-sm-6 col-md-3 mb-4" data-aos-anchor-placement="bottom" data-aos="zoom-in">
+      <div class="rectangle" style="background: rgb(89,32,22); background: linear-gradient(0deg, rgba(89,32,22,1) 0%, rgba(233,81,56,0.1) 100%);"></div>
+      <%= image_tag('friends.png') %>
+      <h2>friends</h2>
     </div>
   </div>
-  <div class="container mt-3">
+  <div class="container-cards my-5">
+    <div class="text-center mb-3">
+      <h1 class="mb-0">Artists</h1>
+    </div>
+    <hr class="mb-5">
+    <div class="row justify-content-center">
     <% @artists.each do |artist| %>
-      <p><%= artist.name %></p>
-      <%= link_to 'show', artist_path(artist) %>
-    <% end %>
-  </div>
-</div>
-
-<div class="container">
-  <div class="d-flex align-items-center justify-content-between mb-3">
-    <h3 class="mb-0">My Lists</h3>
-  </div>
-
-  <hr class="mb-5">
-
-  <div class="row">
-    <% @artists.each do |artist| %>
-      <div class="co-12 col-sm-6 col-md-4 mb-4">
-        <%= link_to artist_path(artist), class:"text-decoration-none" do %>
-          <div class="card-category text-center" data-aos-anchor-placement="bottom" data-aos="zoom-in" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= image_path('boyfriend.png') %>)">
-            <%= artist.name %>
-          </div>
+      <div class="card col-12 col-sm-6 col-md-4 p-0 m-2 shadow">
+        <h2 class="text-end"><%= artist.name %></h2>
+        <i class="fas fa-arrow-right i-fake"></i>
+        <p><%= artist.category %></p>
+        <div class="pic" style="background-image: image_path(<%# artist.photos.first %>) "></div>
+        <div class="social">
+          <i class="fab fa-instagram i-fake"></i>
+          <%= link_to artist_path(artist), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{artist.name}"} do %>
+            <i class="fa-solid fa-user-minus i-fake"></i>
+          <% end %>
+          <%= link_to edit_artist_path(artist) do %>
+            <i class="fa-solid fa-user-pen i-fake"></i>
+          <% end %>
+          <%= link_to artist_path(artist) do %>
+            <i class="fa-solid fa-user i-fake"></i>
+          <% end %>
+        </div>
+        <%= link_to artist_path(artist) do %>
+          <button>
+          </button>
         <% end %>
       </div>
     <% end %>
+    </div>
   </div>
 </div>
+
+
