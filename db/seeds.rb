@@ -53,7 +53,15 @@ User.all.each do |user|
   end
 end
 
-puts "Artists created"
+User.all.each do |user|
+    Customer.create(
+      first_name: Faker::Name.unique.name,
+      address: Faker::Address.full_address,
+      user_id: user.id
+    )
+end
+
+puts "Customers created"
 
 Add.create(
   name: "Horse",
