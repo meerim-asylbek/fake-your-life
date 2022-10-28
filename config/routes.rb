@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :artists do
-    resources :reviews, only: %i[create]
+  resources :artists, only: [:index]
+    # resources :reviews, only: %i[create]
+  # resources :reviews, only: %i[destroy]
+  resources :users do
+    resources :artists, only: %i[new create show edit update]
   end
-  resources :reviews, only: %i[destroy]
-
   resources :users do
     resources :customers, only: %i[new create show edit update]
   end

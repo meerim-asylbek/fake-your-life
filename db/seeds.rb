@@ -40,7 +40,7 @@ User.create(
 puts "Users created"
 
 User.all.each do |user|
-  # 2.times do
+  2.times do
     Artist.create(
       name: Faker::Name.unique.name,
       category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
@@ -50,7 +50,7 @@ User.all.each do |user|
       age: rand(18..100),
       user_id: user.id
     )
-  # end
+  end
 end
 
 User.all.each do |user|
