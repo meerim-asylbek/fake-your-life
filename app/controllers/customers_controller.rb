@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
     @customer = Customer.new(customer_params)
     @customer.user = @user
     if @customer.save
-      redirect_to customer_path(@customer)
+      redirect_to user_customer_path(@customer.user, @customer)
     else
       render :new, status: :unprocessable_entity
     end

@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :customers, only: %i[new create show edit update]
   end
 
+  # resources :users do
+  #   resources :artists, only: %i[index new create show edit update]
+  # end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

@@ -40,7 +40,7 @@ User.create(
 puts "Users created"
 
 User.all.each do |user|
-  2.times do
+  # 2.times do
     Artist.create(
       name: Faker::Name.unique.name,
       category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
@@ -50,7 +50,7 @@ User.all.each do |user|
       age: rand(18..100),
       user_id: user.id
     )
-  end
+  # end
 end
 
 User.all.each do |user|
@@ -63,45 +63,45 @@ end
 
 puts "Customers created"
 
-Add.create(
-  name: "Horse",
-  category: "Animals",
-  picture_url: "horse.jpg"
-)
-Add.create(
-  name: "Limo",
-  category: "Vehicles",
-  picture_url: "limo.jpg"
-)
-Add.create(
-  name: "Chocolates",
-  category: "Food",
-  picture_url: "chocolates.jpg"
-)
-Add.create(
-  name: "Picnic",
-  category: "Food",
-  picture_url: "picnic.jpg"
-)
-Add.create(
-  name: "Flowers",
-  category: "Decoration",
-  picture_url: "flowers.jpg"
-)
-Add.create(
-  name: "Forest house",
-  category: "Location",
-  picture_url: "location.jpg"
-)
-Add.create(
-  name: "Photo pack",
-  category: "Media",
-  picture_url: "photo_pack.jpg"
-)
-Add.create(
-  name: "Video pack",
-  category: "Media",
-  picture_url: "video_pack.jpg"
-)
+# Add.create(
+#   name: "Horse",
+#   category: "Animals",
+#   picture_url: "horse.jpg"
+# )
+# Add.create(
+#   name: "Limo",
+#   category: "Vehicles",
+#   picture_url: "limo.jpg"
+# )
+# Add.create(
+#   name: "Chocolates",
+#   category: "Food",
+#   picture_url: "chocolates.jpg"
+# )
+# Add.create(
+#   name: "Picnic",
+#   category: "Food",
+#   picture_url: "picnic.jpg"
+# )
+# Add.create(
+#   name: "Flowers",
+#   category: "Decoration",
+#   picture_url: "flowers.jpg"
+# )
+# Add.create(
+#   name: "Forest house",
+#   category: "Location",
+#   picture_url: "location.jpg"
+# )
+# Add.create(
+#   name: "Photo pack",
+#   category: "Media",
+#   picture_url: "photo_pack.jpg"
+# )
+# Add.create(
+#   name: "Video pack",
+#   category: "Media",
+#   picture_url: "video_pack.jpg"
+# )
 
-puts "Adds created"
+# puts "Adds created"
