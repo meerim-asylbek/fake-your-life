@@ -12,9 +12,19 @@ Rails.application.routes.draw do
   end
 
   resources :users do
-    resources :hires
+    resources :artists, shallow: true
   end
 
+  resources :artists do
+    resources :hires, shallow: true
+  end
+
+  # resources :studios do
+  #   resources :rooms, shallow: true
+  # end
+  # resources :rooms do
+  #   resources :bookings, shallow: true
+  # end
 
 
   # resources :users do

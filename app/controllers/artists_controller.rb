@@ -1,6 +1,11 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[show create edit update]
-  before_action :set_user, only: [:new, :show, :create, :edit, :update]
+  before_action :set_user, only: [:new, :show, :create, :edit, :update, :customer_artist?]
+
+  # def customer_artist?
+  #   @artist = Artist.where(current_user)
+  #   @customer == @artist
+  # end
 
   def index
     @artists = Artist.all
@@ -29,7 +34,6 @@ class ArtistsController < ApplicationController
   def update
     @artist.user = @user
     @artist.update(artist_params)
-    # No need for app/views/artists/update.html.erb
     redirect_to user_artist_path(@artist.user, @artist)
   end
 
