@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   root to: "pages#home"
-  resources :artists, only: [:index]
-    # resources :reviews, only: %i[create]
-  # resources :reviews, only: %i[destroy]
+  resources :artists do
+     resources :reviews, only: %i[create]
+     resources :customers, only: %i[create]
+  end
+   resources :reviews, only: %i[destroy]
+
   resources :users do
     resources :artists, only: %i[new create show edit update]
   end
@@ -11,13 +14,13 @@ Rails.application.routes.draw do
     resources :customers, only: %i[new create show edit update]
   end
 
-  resources :users do
-    resources :artists, shallow: true
-  end
+  #resources :users do
+    #resources :artists, shallow: true
+  #end
 
-  resources :artists do
-    resources :hires, shallow: true
-  end
+  #resources :artists do
+    #resources :hires, shallow: true
+  #end
 
   # resources :studios do
   #   resources :rooms, shallow: true

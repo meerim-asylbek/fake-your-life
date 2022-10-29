@@ -1,6 +1,6 @@
 class Artist < ApplicationRecord
   has_many :hires, dependent: :destroy
-  #has_many_attached :photos
+  has_many_attached :photos
   belongs_to :user
   has_many :reviews
 
