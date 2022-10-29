@@ -53,47 +53,55 @@ User.all.each do |user|
   end
 end
 
-puts "Artists created"
+User.all.each do |user|
+    Customer.create(
+      first_name: Faker::Name.unique.name,
+      address: Faker::Address.full_address,
+      user_id: user.id
+    )
+end
 
-Add.create(
-  name: "Horse",
-  category: "Animals",
-  picture_url: "horse.jpg"
-)
-Add.create(
-  name: "Limo",
-  category: "Vehicles",
-  picture_url: "limo.jpg"
-)
-Add.create(
-  name: "Chocolates",
-  category: "Food",
-  picture_url: "chocolates.jpg"
-)
-Add.create(
-  name: "Picnic",
-  category: "Food",
-  picture_url: "picnic.jpg"
-)
-Add.create(
-  name: "Flowers",
-  category: "Decoration",
-  picture_url: "flowers.jpg"
-)
-Add.create(
-  name: "Forest house",
-  category: "Location",
-  picture_url: "location.jpg"
-)
-Add.create(
-  name: "Photo pack",
-  category: "Media",
-  picture_url: "photo_pack.jpg"
-)
-Add.create(
-  name: "Video pack",
-  category: "Media",
-  picture_url: "video_pack.jpg"
-)
+puts "Customers created"
 
-puts "Adds created"
+# Add.create(
+#   name: "Horse",
+#   category: "Animals",
+#   picture_url: "horse.jpg"
+# )
+# Add.create(
+#   name: "Limo",
+#   category: "Vehicles",
+#   picture_url: "limo.jpg"
+# )
+# Add.create(
+#   name: "Chocolates",
+#   category: "Food",
+#   picture_url: "chocolates.jpg"
+# )
+# Add.create(
+#   name: "Picnic",
+#   category: "Food",
+#   picture_url: "picnic.jpg"
+# )
+# Add.create(
+#   name: "Flowers",
+#   category: "Decoration",
+#   picture_url: "flowers.jpg"
+# )
+# Add.create(
+#   name: "Forest house",
+#   category: "Location",
+#   picture_url: "location.jpg"
+# )
+# Add.create(
+#   name: "Photo pack",
+#   category: "Media",
+#   picture_url: "photo_pack.jpg"
+# )
+# Add.create(
+#   name: "Video pack",
+#   category: "Media",
+#   picture_url: "video_pack.jpg"
+# )
+
+# puts "Adds created"

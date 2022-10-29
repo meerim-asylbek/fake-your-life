@@ -9,8 +9,8 @@
   <div class="container mt-3">
     <% @artists.each do |artist| %>
       <p><%= artist.name %></p>
-      <%= link_to 'show', artist_path(artist) %>
+      <%= link_to 'show', artists_path(artist) %>
     <% end %>
   </div>
-</div>
 
+</div>

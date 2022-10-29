@@ -10,6 +10,8 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "components/background";
+
 
 html {
 	font-size: 100%;
@@ -23,3 +25,4 @@ a {
 a:hover {
 	font-size: 1.1rem;
 }
+
