@@ -1,11 +1,35 @@
-<h1>New artist</h1>
-<%= simple_form_for [@user, @artist] do |f| %>
-
-  <%= f.input :name %>
-  <%= f.input :category %>
-  <%= f.input :address %>
-  <%= f.input :description %>
-  <%= f.input :price %>
-  <%= f.input :photos %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card">
+      <h2 class="card-title text-center">Become an artist</h2>
+        <div class="card-body py-md-4">
+          <%= simple_form_for [@user, @artist] do |f| %>
+            <div class="form-group">
+              <%= f.input :name, class:"form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.input :category %>
+            </div>
+            <div class="form-group">
+              <%= f.input :age %>
+            </div>
+            <div class="form-group">
+              <%= f.input :description %>
+            </div>
+            <div class="form-group">
+              <%= f.input :address %>
+            </div>
+            <div class="form-group">
+              <%= f.input :photos %>
+            </div>
+            <div class="form-group">
+              <%= f.input :price %>
+            </div>
+            <%= f.submit "Sign up", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
