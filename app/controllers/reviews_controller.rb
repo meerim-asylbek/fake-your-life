@@ -11,6 +11,7 @@ class ReviewsController < ApplicationController
     else
       render 'artists/show', status: :unprocessable_entity
     end
+    raise
   end
 
   def destroy

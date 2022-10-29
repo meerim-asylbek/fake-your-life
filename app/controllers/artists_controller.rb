@@ -18,22 +18,17 @@ class ArtistsController < ApplicationController
     else
       @artists = Artist.all
     end
-    #raise
   end
 
-  def new
-    @artist = Artist.new
-  end
-
-  def create
-    @artist = artist.new(artist_params)
-    @artist.user = @user
-    if @artist.save
-      redirect_to user_artist_path(@artist.user, @artist)
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
+  #def create
+    #@artist = artist.new(artist_params)
+    #@artist.user = @user
+    #if @artist.save
+      #redirect_to user_artist_path(@artist.user, @artist)
+    #else
+      #render :new, status: :unprocessable_entity
+    #end
+  #end
 
   def show
     @hire = Hire.new(artist: @artist)
@@ -53,9 +48,6 @@ class ArtistsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if @artist.update(artist_params)
       redirect_to @artist
@@ -72,11 +64,11 @@ class ArtistsController < ApplicationController
   def edit
   end
 
-  def update
-    @artist.user = @user
-    @artist.update(artist_params)
-    redirect_to user_artist_path(@artist.user, @artist)
-  end
+  #def update
+    #@artist.user = @user
+    #@artist.update(artist_params)
+    #redirect_to user_artist_path(@artist.user, @artist)
+  #end
 
   private
 
