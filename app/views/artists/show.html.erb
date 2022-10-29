@@ -1,17 +1,68 @@
 <div class="container mt-4">
-  <h1><%= @artist.name %></h1>
-  <small>Category: <%= @artist.category %></small>
-  <div class="container">
-    <h3>description:</h3>
-    <p><%= @artist.description %></p>
-    <h3>Price:</h3>
-    <p><%= @artist.price %></p>
-    <h3>Address:</h3>
-    <p><%= @artist.address %></p>
-    <h3>Age:</h3>
-    <p><%= @artist.age.to_s %></p>
-    <%= cl_image_tag("cdxdm3ainqrf3b9fpg5ptbtin5eo",
-      width: 400, height: 300, crop: :fill) %>
-    <%= link_to "Hire", new_artist_hire_path(@artist) %>
+  <div class="p-2 mb-3">
+    <h1><%= @artist.name %></h1>
+    <div class="d-flex">
+      <small class="mx-3"><%= @artist.category %></small>
+      •
+      <small class="mx-3"><%= @artist.address %></small>
+    </div>
+  </div>
+  <div class="glide rounded mb-4">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+          <li class="glide__slide"><img src="https://source.unsplash.com/1600x900/?man"></li>
+          <li class="glide__slide"><img src="https://source.unsplash.com/1600x900/?woman"></li>
+          <li class="glide__slide"><img src="https://source.unsplash.com/1600x900/?friends"></li>
+          <li class="glide__slide"><img src="https://source.unsplash.com/1600x900/?family"></li>
+      </ul>
+    </div>
+    <div class="glide__arrows" data-glide-el="controls">
+      <button class="glide__arrow glide__arrow--left" data-glide-dir="<">prev</button>
+      <button class="glide__arrow glide__arrow--right" data-glide-dir=">">next</button>
+    </div>
+  </div>
+  <h2><%= @artist.name %></h2>
+  <div class="d-flex mb-3">
+    <small class="mx-2"><%= @artist.age %> years old</small>
+    •
+    <small class="mx-2">From <%= @artist.price %>€</small>
+    •
+    <small class="mx-2">Find me here: <%= @artist.address %></small>
+  </div>
+  <hr class="mb-3">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-6 my-3">
+        <h4>description:</h4>
+        <p><%= @artist.description %></p>
+        <hr class="my-4">
+        <div class="neu-form my-5 p-4">
+          <h5 class="py-3">Add your review</h5>
+          <%= simple_form_for [@artist, @review] do |f| %>
+            <%= f.input :comment, placeholder: "Add your review here..." %>
+            <%= f.input :rating, as: :select, collection: (1..5), required: true, prompt: "Rate your expericence", input_html: { data: { controller: "star-rating", action: "click->form-submit#submit" } } %>
+            <%= f.submit class:"btn btn-outline-success my-3" %>
+          <% end %>
+        </div>
+        <div class="py-4 mb-4">
+          <h3>Reviews</h3>
+          <% if @artist.reviews.empty? %>
+            <small><em class="text-muted">Be the first one to review this list</em></small>
+          <% end %>
+          <% @artist.reviews.each do |review| %>
+            <div>
+              <% review.rating.times do %>
+                <i class="fas fa-star star-yellow"></i>
+              <% end %>
+              <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+              <p class="mb-0"><%= review.comment %></p>
+            </div>
+            <hr>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+      </div>
+    </div>
   </div>
 </div>
