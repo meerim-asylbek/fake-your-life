@@ -4,14 +4,13 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @customer = Customer.find_by(user_id: current_user.id)
     @artist = Artist.find(params[:artist_id])
-    @review.customer = @customer
-    @review.artist = @artist
+    @review.customer_id = @customer
+    @review.artist_id = @artist
     if @review.save
       redirect_to artist_path(@artist)
     else
       render 'artists/show', status: :unprocessable_entity
     end
-    raise
   end
 
   def destroy
