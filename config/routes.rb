@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :customers, only: %i[new create show edit update]
   end
-
+  
   #resources :users do
     #resources :artists, shallow: true
   #end
@@ -27,8 +27,12 @@ Rails.application.routes.draw do
   # end
   # resources :rooms do
   #   resources :bookings, shallow: true
+ 
   # end
 
+  # resources :artists do
+  #   resources :hires, shallow: true
+  # end
 
   # resources :users do
   #   resources :artists, only: %i[index new create show edit update]
