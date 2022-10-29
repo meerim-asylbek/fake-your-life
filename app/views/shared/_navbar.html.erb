@@ -7,11 +7,11 @@
     <div class="search"> 
       <div class="d-flex">
         <div class="collapse collapse-horizontal search-fake mx-1" id="navbarTogglerSearch">
-          <form class="" role="search" action="">
-            <input class="form-control bg-glass shadow" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success visually-hidden" type="submit">Search</button>
-          </form>
-        </div>
+          <form class="d-flex" role="search" action="">
+            <input class="form-control bg-glass shadow" type="search" placeholder="Search by name" aria-label="Search" name="query" value="<%= params[:query] %>">
+            <button class="btn btn-outline-success visually-hidden" type="submit">Search</button>
+            </form>
+          </div>
         <span class="btn-white d-flex align-items-center justify-content-center p-2 mx-1" type='button' data-bs-toggle='collapse' data-bs-target="#navbarTogglerSearch" aria-controls="navbarTogglerSearch" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa-sharp fa-solid fa-magnifying-glass fa-lg text-dark"></i>
         </span>

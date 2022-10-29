@@ -2,7 +2,16 @@ class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[show destroy edit update] 
 
   def index
-    @artists = Artist.all
+    if params[:query].present? && !params[:query].empty?
+      @query = params[:query]
+      @artists = Artist.where("name LIKE ?", "%#{params[:query]}%")
+    elsif index_params
+      @filter = params[:filter]
+      @artists = Artist.where("category LIKE ?", "%#{params[:filter]}%")
+    else
+      @artists = Artist.all
+    end
+    #raise
   end
 
   def show
@@ -47,6 +56,10 @@ class ArtistsController < ApplicationController
 
   def artist_params
     params.require(:artist).permit(:name, :category, :address, :description, :photo, :price, :age)
+  end
+
+  def index_params
+    params.permit(:filter, :query)
   end
 
 end
