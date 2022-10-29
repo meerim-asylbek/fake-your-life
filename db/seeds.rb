@@ -1,4 +1,5 @@
 require 'faker'
+require "open-uri"
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
@@ -16,49 +17,54 @@ User.destroy_all
 puts "Database cleaned"
 
 User.create(
-  email: 'sebastian@fakeyourlife.com',
-  password: '123456'
+  email: "sebas@fake.com",
+  password: 123456
 )
 
 User.create(
-  email: 'meerim@fakeyourlife.com',
-  password: '123456'
-
+  email: "meerim@fake.com",
+  password: 123456
 )
 
-User.create(
-  email: 'sebas@fakeyourlife.com',
-  password: '123456'
-)
-
-User.create(
-  email: 'meer@fakeyourlife.com',
-  password: '123456'
-)
-
+10.times do
+  User.create(
+    email: Faker::Internet.email,
+    password: 123456
+  )
+end
 
 puts "Users created"
 
 User.all.each do |user|
+  artist = Artist.create(
+    name: Faker::Name.unique.name,
+    category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
+    address: Faker::Address.full_address,
+    description: Faker::TvShows::Friends.quote,
+    price: rand(20..1000),
+    age: rand(18..100),
+    user_id: user.id
+  )
   2.times do
-    Artist.create(
-      name: Faker::Name.unique.name,
-      category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
-      address: Faker::Address.full_address,
-      description: Faker::TvShows::Friends.quote,
-      price: rand(20..1000),
-      age: rand(18..100),
-      user_id: user.id
-    )
+    file = URI.open("https://source.unsplash.com/random/500x500/?'#{artist.category}'")
+    artist.photos.attach(io: file, filename: "image.png", content_type: "image/png")
+    artist.save
   end
 end
 
+puts "Artists created"
+
 User.all.each do |user|
-    Customer.create(
-      first_name: Faker::Name.unique.name,
-      address: Faker::Address.full_address,
-      user_id: user.id
-    )
+  customer = Customer.create(
+    first_name: Faker::Name.unique.name.split(" ")[0],
+    last_name: Faker::Name.unique.name.split(" ")[1],
+    address: Faker::Address.full_address,
+    age: rand(18..100),
+    user_id: user.id
+  )
+  avatar = URI.open("https://source.unsplash.com/random/100x100/?avatar")
+  customer.avatar.attach(io: avatar, filename: "image.png", content_type: "image/png")
+  customer.save
 end
 
 puts "Customers created"
