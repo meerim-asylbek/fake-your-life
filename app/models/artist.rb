@@ -1,6 +1,6 @@
 class Artist < ApplicationRecord
   has_many :hires, dependent: :destroy
-  has_many_attached :photos
+  #has_many_attached :photos
   belongs_to :user
   has_many :reviews
 
@@ -11,4 +11,5 @@ class Artist < ApplicationRecord
   validates :price, presence: true, allow_blank: false, numericality: true
   validates :age, presence: true, allow_blank: false, numericality: { only_integer: true, greater_than_or_equal_to: 18 }
   # validates :photos, presence: true, allow_blank: false
+
 end

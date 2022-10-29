@@ -11,3 +11,18 @@
 @import "components/index";
 @import "pages/index";
 @import "components/background";
+
+
+html {
+	font-size: 100%;
+}
+
+a {
+	text-decoration: none;
+	transition: all 0.5 ease; 
+}
+
+a:hover {
+	font-size: 1.1rem;
+}
+
