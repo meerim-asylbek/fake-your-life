@@ -2,10 +2,10 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.new(review_params)
-    @customer = Customer.find_by(user_id: current_user.id)
+    @customer = Customer.find_by(user_id: current_user)
     @artist = Artist.find(params[:artist_id])
-    @review.customer_id = @customer
-    @review.artist_id = @artist
+    @review.artist_id = @artist.id
+    @review.customer_id = @customer.id
     if @review.save
       redirect_to artist_path(@artist)
     else
@@ -16,13 +16,13 @@ class ReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    # redirect_to artist_path(@review.artist)
+    redirect_to artist_path(@review.artist)
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:comment, :rating, :customer_id, :artist_id)
+    params.require(:review).permit(:comment, :rating)
   end
 
 end
