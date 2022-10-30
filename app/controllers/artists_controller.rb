@@ -1,5 +1,4 @@
 class ArtistsController < ApplicationController
-
   before_action :set_artist, only: %i[show create edit update]
   before_action :set_user, only: [:new, :show, :create, :edit, :update, :customer_artist?]
 
@@ -33,7 +32,7 @@ class ArtistsController < ApplicationController
 
   def show
     @hire = Hire.new(artist: @artist)
-    @review = Review.new(artist: @artist)
+    @review = Review.new(artist_id: @artist)
   end
 
   def new
