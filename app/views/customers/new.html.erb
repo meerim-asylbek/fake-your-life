@@ -7,7 +7,7 @@
           <div class="card opacity-75">
             <h2 class="card-title text-center">Complete your profile</h2>
             <div class="card-body py-md-4">
-              <%= simple_form_for [@user, @customer] do |f| %>
+              <%= simple_form_for @customer do |f| %>
                 <div class="form-group">
                   <%= f.input :first_name, class:"form-control" %>
                 </div>

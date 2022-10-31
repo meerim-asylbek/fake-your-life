@@ -1,8 +1,8 @@
 class Customer < ApplicationRecord
+  belongs_to :user
   has_many :hires
   has_many :reviews
   has_one_attached :avatar
-  belongs_to :user
   has_many :artists, through: :hires
 
   validates :first_name, presence: true, allow_blank: false
