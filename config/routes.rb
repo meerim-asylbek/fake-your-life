@@ -1,18 +1,20 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => {:registrations => "registrations"}
-  root to: "artists#index"
+  devise_for :users
+  #, :controllers => {:registrations => "registrations"}
+
+  root to: "pages#home"
+  resources :customers, except: %i[index]
   resources :artists do
      resources :reviews, only: %i[create]
-     resources :customers, only: %i[create]
+     resources :hires, only: %i[create]
   end
    resources :reviews, only: %i[destroy]
+   resources :hires, only: %i[destroy]
 
-  resources :users do
-    resources :artists, only: %i[new create show edit update]
-  end
-  resources :users do
-    resources :customers, only: %i[new create show edit update]
-  end
+  #resources :users do
+    #resources :artists, only: %i[new create edit update]
+    #resources :customers, only: %i[new create show edit update]
+  #end
   
   #resources :users do
     #resources :artists, shallow: true
