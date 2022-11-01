@@ -4,14 +4,15 @@ Rails.application.routes.draw do
   #, :controllers => {:registrations => "registrations"}
 
   root to: "pages#home"
-  resources :customers, except: %i[index]
-  resources :artists do
-     resources :reviews, only: %i[create]
-     resources :hires, only: %i[create]
-     resources :hire_adds, only: %i[create]
+  resources :customers, except: %i[index] do
+    resources :hires, only: %i[show edit update]
   end
-   resources :reviews, only: %i[destroy]
-   resources :hires, only: %i[destroy]
+  resources :artists do
+    resources :hires, only: %i[create]
+    resources :reviews, only: %i[create]
+  end
+  resources :reviews, only: %i[destroy]
+  resources :hires, only: %i[destroy]
 
   #resources :users do
     #resources :artists, only: %i[new create edit update]

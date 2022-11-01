@@ -1,6 +1,11 @@
 .shape-fake {
   z-index: -1;
 }
+.shape-fake-top {
+  width: 100vw;
+  object-fit: cover;
+  z-index: -100;
+}
 .bg-image {
   background-size: 100%;
 } 
