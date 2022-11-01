@@ -1,0 +1,32 @@
+<div class="bg-image"
+     style="background-image: url('https://images.unsplash.com/photo-1481152508843-1ec796b30a8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+          <div class="card opacity-75">
+            <h2 class="card-title text-center">Edit your profile</h2>
+            <div class="card-body py-md-4">
+              <%= simple_form_for @customer do |f| %>
+                <div class="form-group">
+                  <%= f.input :first_name, class:"form-control" %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :last_name %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :age %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :address %>
+                </div>
+                <div class="form-group">
+                  <%= f.input :avatar %>
+                </div>
+                <%= f.submit "Save changes", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

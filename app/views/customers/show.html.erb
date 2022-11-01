@@ -1,4 +1,77 @@
+
 <h1>My profile</h1>
 <p><%= @customer.first_name %></p>
-<%= cl_image_tag("c9yyofxctffvq16wkpd5kecvmuf8",
-      :width=>300, :height=>300, :radius=>"max", :crop=>"fill") %>
+<p><%= @customer.last_name %></p>
+<p><%= @customer.age %></p>
+<p><%= @customer.address %></p>
+<%= cl_image_tag @customer.avatar.key, height: 300, width: 300, crop: :fill %>
+
+<div class="py-4 mb-4">
+  <h3>Reviews that I wrote TBD</h3>
+  <% if @customer.reviews.empty? %>
+    <small><em class="text-muted">You didn't write any reviews yet</em></small>
+  <% end %>
+  <% @customer.reviews.each do |review| %>
+    <div>
+      <% review.rating.times do %>
+        <i class="fa-solid fa-star"></i>
+      <% end %>
+      <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+      <p class="mb-0"><%= link_to review.artist.name, artist_path(review.artist) %></p>
+      <p class="mb-0"><%= review.comment %></p>
+    </div>
+  <% end %>
+</div>
+
+<% reviews = Review.where(artist_id: current_user.id ) %>
+<div class="py-4 mb-4">
+  <h3>Reviews about me</h3>
+  <% if reviews.empty? %>
+    <small><em class="text-muted">You haven't been reviewed yet</em></small>
+  <% end %>
+  <% reviews.each do |review| %>
+    <div>
+      <% review.rating.times do %>
+        <i class="fa-solid fa-star"></i>
+      <% end %>
+      <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+      <p class="mb-0"><%= review.comment %></p>
+      <p class="mb-0"><%= link_to review.customer.first_name, customer_path(review.customer) %></p>
+    </div>
+  <% end %>
+</div>
+
+<div class="py-4 mb-4">
+  <h3>Bookings that I made TBD</h3>
+  <% if @customer.hires.empty? %>
+    <small><em class="text-muted">You didn't hire anyone yet</em></small>
+  <% end %>
+  <% @customer.hires.each do |hire| %>
+    <div>
+      <small><em class="text-muted"><%= distance_of_time_in_words_to_now(hire.created_at) %> ago</em></small>
+      <p class="mb-0"><%= hire.start_date %></p>
+      <p class="mb-0"><%= hire.end_date %></p>
+      <p class="mb-0"><%= hire.total_price %></p>
+      <p class="mb-0"><%= link_to "Delete this booking", hires_path(hire) %></p>
+    </div>
+  <% end %>
+</div>
+
+<% hires = Hire.where(artist_id: current_user.id ) %>
+<div class="py-4 mb-4">
+  <h3>Bookings where I am an artist</h3>
+  <% if hires.empty? %>
+    <small><em class="text-muted">You were not hired yet</em></small>
+  <% end %>
+  <% hires.each do |hire| %>
+    <div>
+      <small><em class="text-muted"><%= distance_of_time_in_words_to_now(hire.created_at) %> ago</em></small>
+      <p class="mb-0"><%= hire.start_date %></p>
+      <p class="mb-0"><%= hire.end_date %></p>
+      <p class="mb-0"><%= hire.total_price %></p>
+      <p class="mb-0"><%= link_to "Delete this booking", hires_path(hire) %></p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Edit my profile", edit_customer_path(@customer)%>
