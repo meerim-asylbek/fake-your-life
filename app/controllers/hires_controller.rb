@@ -7,6 +7,7 @@ class HiresController < ApplicationController
   end
 
   def create
+    @hire_add = HireAdd.new()
     @hire = Hire.new(hire_params)
     @customer = Customer.find_by(user_id: current_user)
     @artist = Artist.find(params[:artist_id])

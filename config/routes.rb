@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'hire_adds/create'
   devise_for :users
   #, :controllers => {:registrations => "registrations"}
 
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
   resources :artists do
      resources :reviews, only: %i[create]
      resources :hires, only: %i[create]
+     resources :hire_adds, only: %i[create]
   end
    resources :reviews, only: %i[destroy]
    resources :hires, only: %i[destroy]

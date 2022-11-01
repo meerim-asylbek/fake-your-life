@@ -1,11 +1,5 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: %i[show create edit update]
-  before_action :set_user, only: [:new, :show, :create, :edit, :update, :customer_artist?]
-
-  # def customer_artist?
-  #   @artist = Artist.where(current_user)
-  #   @customer == @artist
-  # end
 
   def index
     @customer = Customer.find_by(user_id: current_user.id)
@@ -20,18 +14,10 @@ class ArtistsController < ApplicationController
     end
   end
 
-  #def create
-    #@artist = artist.new(artist_params)
-    #@artist.user = @user
-    #if @artist.save
-      #redirect_to user_artist_path(@artist.user, @artist)
-    #else
-      #render :new, status: :unprocessable_entity
-    #end
-  #end
-
   def show
-    @hire = Hire.new()
+    @adds = Add.all
+    @hire = Hire.new(artist_id: @artist.id, customer_id: current_user.id)
+    @hire_add = HireAdd.new()
     @hire_add = HireAdd.new()
     @review = Review.new()
   end
@@ -65,17 +51,7 @@ class ArtistsController < ApplicationController
   def edit
   end
 
-  #def update
-    #@artist.user = @user
-    #@artist.update(artist_params)
-    #redirect_to user_artist_path(@artist.user, @artist)
-  #end
-
   private
-
-  def set_user
-    @user = current_user
-  end
 
   def set_artist
     @artist = Artist.find(params[:id])
