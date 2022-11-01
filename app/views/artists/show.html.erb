@@ -69,8 +69,6 @@
               data: { "hire-form-target": "startDate", "action": "change->hire-form#minEnd" } %>
             <%= f.label :end_date %>
             <%= f.date_field :end_date, data: { "hire-form-target": "endDate", "action": "change->hire-form#totalDays" } %>
-            <%# f.association :adds, as: :check_boxes, collection: Add.all.order(:name), prompt: "Select your adds", data: { controller: "tom-select" }, input_html: { class: 'multiselectadd', multiple: true } %>
-            <%= f.association :adds, collection: Add.all.order(:name), input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: false}}} %>
             <%= f.hidden_field :total_price, :data => { :"hire-form-target" => "totalForm" } %>
             <span data-hire-form-target="dailyPrice" hidden><%= @artist.price %></span>
             <hr>
@@ -80,13 +78,6 @@
               <h4 class="my-0 mx-2"data-hire-form-target="fullPrice"></h4>
             </div>
             <%= f.button :submit, class: "btn btn-outline-success" %>
-            <% @adds.each do |a| %>
-              <%= image_tag a.picture_url, :class => "avatar-large" %>
-              <div><%= a.price %></div>
-            <% end %>
-            <%= select_tag 'particular_users', 
-       options_from_collection_for_select(@adds, :name, :price), 
-       multiple: true, class: 'multiselectuser' %>
           <% end %>
         </div>
       </div>
