@@ -31,8 +31,9 @@ class ArtistsController < ApplicationController
   #end
 
   def show
-    @hire = Hire.new(artist: @artist)
-    @review = Review.new(artist_id: @artist)
+    @hire = Hire.new()
+    @hire_add = HireAdd.new()
+    @review = Review.new()
   end
 
   def new

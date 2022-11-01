@@ -68,45 +68,53 @@ puts "Customers created"
 
 puts "Artists created"
 
-# Add.create(
-#   name: "Horse",
-#   category: "Animals",
-#   picture_url: "horse.jpg"
-# )
-# Add.create(
-#   name: "Limo",
-#   category: "Vehicles",
-#   picture_url: "limo.jpg"
-# )
-# Add.create(
-#   name: "Chocolates",
-#   category: "Food",
-#   picture_url: "chocolates.jpg"
-# )
-# Add.create(
-#   name: "Picnic",
-#   category: "Food",
-#   picture_url: "picnic.jpg"
-# )
-# Add.create(
-#   name: "Flowers",
-#   category: "Decoration",
-#   picture_url: "flowers.jpg"
-# )
-# Add.create(
-#   name: "Forest house",
-#   category: "Location",
-#   picture_url: "location.jpg"
-# )
-# Add.create(
-#   name: "Photo pack",
-#   category: "Media",
-#   picture_url: "photo_pack.jpg"
-# )
-# Add.create(
-#   name: "Video pack",
-#   category: "Media",
-#   picture_url: "video_pack.jpg"
-# )
+ Add.create(
+   name: "Horse",
+   category: "Animals",
+   picture_url: "horse.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Limo",
+   category: "Vehicles",
+   picture_url: "limo.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Chocolates",
+   category: "Food",
+   picture_url: "chocolates.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Picnic",
+   category: "Food",
+   picture_url: "picnic.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Flowers",
+   category: "Decoration",
+   picture_url: "flowers.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Forest house",
+   category: "Location",
+   picture_url: "location.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Photo pack",
+   category: "Media",
+   picture_url: "photo_pack.jpg",
+   price: rand(5..100)
+ )
+ Add.create(
+   name: "Video pack",
+   category: "Media",
+   picture_url: "video_pack.jpg",
+   price: rand(5..100)
+ )
 
-# puts "Adds created"
+ puts "Adds created"
