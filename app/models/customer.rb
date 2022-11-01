@@ -8,5 +8,5 @@ class Customer < ApplicationRecord
   validates :first_name, presence: true, allow_blank: false
   validates :last_name, presence: true, allow_blank: false
   validates :address, presence: true, allow_blank: false
-  validates :age, presence: true, allow_blank: false 
+  validates :age, presence: true, allow_blank: false
 end

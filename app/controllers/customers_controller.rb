@@ -1,6 +1,5 @@
 class CustomersController < ApplicationController
-  before_action :set_customer, only: [:show]
-  before_action :set_user, only: [:new, :show, :create]
+  before_action :set_customer, only: %i[show create edit update]
 
   def new
     @customer = Customer.new
@@ -8,9 +7,9 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @customer.user = @user
+    @customer.user = current_user
     if @customer.save
-      redirect_to artists_path
+      redirect_to customer_path(@customer)
     else
       render :new, status: :unprocessable_entity
     end
@@ -19,11 +18,16 @@ class CustomersController < ApplicationController
   def show
   end
 
-  private
+  def edit
 
-  def set_user
-    @user = current_user
   end
+
+  def update
+    @customer.update(customer_params)
+    redirect_to customer_path(@customer)
+  end
+
+  private
 
   def set_customer
     @customer = Customer.find_by(user_id: current_user.id)
