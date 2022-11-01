@@ -51,6 +51,7 @@ gem "sassc-rails"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
+gem 'simple-form-datepicker', '~> 0.1.3'
 
 #faker
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'main'
