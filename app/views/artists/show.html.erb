@@ -37,10 +37,10 @@
         <hr class="my-4">
         <div class="neu-form my-5 p-4">
           <h5 class="py-3">Add your review</h5>
-          <%= simple_form_for [@artist, @review] do |f| %>
+          <%= simple_form_for [@artist, @review], data: { controller: "star-form" } do |f| %>
             <%= f.input :comment, placeholder: "Add your review here..." %>
-            <%= f.input :rating, as: :select, collection: (1..5), required: true, prompt: "Rate your expericence", input_html: { data: { controller: "star-rating", action: "click->form-submit#submit" } } %>
-            <%= f.submit class:"btn btn-outline-success my-3" %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { controller: "star-rating", action: "change->star-form#submit"} }  %>
+            <%= f.button :submit, class:"btn btn-outline-success my-3" %>
           <% end %>
         </div>
         <div class="py-4 mb-4">
@@ -51,7 +51,7 @@
           <% @artist.reviews.each do |review| %>
             <div>
               <% review.rating.times do %>
-                <i class="fas fa-star star-yellow"></i>
+                <i class="fa-solid fa-star"></i>
               <% end %>
               <small><em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
               <p class="mb-0"><%= review.comment %></p>
@@ -61,6 +61,25 @@
         </div>
       </div>
       <div class="col-12 col-sm-6">
+        <div class="neu-form sticky-top p-4">
+          <h2>Booking to <%=  %></h2>
+          <%= simple_form_for [@artist, @hire], data: { controller: "hire-form" } do |f| %>
+            <%= f.label :start_date %>
+            <%= f.date_field :start_date, min: Date.tomorrow,
+              data: { "hire-form-target": "startDate", "action": "change->hire-form#minEnd" } %>
+            <%= f.label :end_date %>
+            <%= f.date_field :end_date, data: { "hire-form-target": "endDate", "action": "change->hire-form#totalDays" } %>
+            <%= f.hidden_field :total_price, :data => { :"hire-form-target" => "totalForm" } %>
+            <span data-hire-form-target="dailyPrice" hidden><%= @artist.price %></span>
+            <hr>
+            <small>Total price:</small>
+            <div class="d-flex align-items-center mb-2">
+              <i class="fa-solid fa-euro-sign"></i>
+              <h4 class="my-0 mx-2"data-hire-form-target="fullPrice"></h4>
+            </div>
+            <%= f.button :submit, class: "btn btn-outline-success" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

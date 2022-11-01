@@ -5,4 +5,8 @@ export default class extends Controller {
   connect() {
     new StarRating(this.element)
   }
+  //submit() {
+    //console.log("hola")
+    ////this.element.submit();
+  //}
 }

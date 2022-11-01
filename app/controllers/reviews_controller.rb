@@ -9,6 +9,7 @@ class ReviewsController < ApplicationController
     if @review.save
       redirect_to artist_path(@artist)
     else
+      @hire = Hire.new
       render 'artists/show', status: :unprocessable_entity
     end
   end
@@ -22,7 +23,7 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:comment, :rating)
+    params.require(:review).permit(:comment, :rating, :artist_id, :customer_id)
   end
 
 end

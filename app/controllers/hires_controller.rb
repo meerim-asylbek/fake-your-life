@@ -7,11 +7,18 @@ class HiresController < ApplicationController
   end
 
   def create
-    @hire = Hire.new
-    @hire.artist = @artist
-    @hire.user = @user
-    @hire.save
-    redirect_to root_path
+    @hire_add = HireAdd.new()
+    @hire = Hire.new(hire_params)
+    @customer = Customer.find_by(user_id: current_user)
+    @artist = Artist.find(params[:artist_id])
+    @hire.artist_id = @artist.id
+    @hire.customer_id = @customer.id
+    if @hire.save
+      redirect_to root_path
+    else
+      @hire = Hire.new
+      render 'artists/show', status: :unprocessable_entity
+    end
   end
 
   private
@@ -25,6 +32,6 @@ class HiresController < ApplicationController
   end
 
   def hire_params
-    params.require(:hire).permit(:start_date, :end_date, :total_price, :artist)
+    params.require(:hire).permit(:start_date, :end_date, :total_price, :artist_id, :customer_id)
   end
 end

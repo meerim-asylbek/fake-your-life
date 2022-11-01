@@ -19,12 +19,12 @@
         
         <li class="btn-icon nav-item btn-group dropstart">
           <% customer = Customer.find_by(user_id: current_user.id) %>
-          <% if customer.nil? %>
+          <% if customer.avatar.key.nil? %>
             <%= image_tag("default_user.png", class: "avatar") %>
           <% else %>
             <%= cl_image_tag customer.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>36, :width=>36, :crop=>"thumb", :zoom=>"0.5" %>
           <% end %>
-            <div class="dropdown-menu dropdown-menu-end bg-glass" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end bg-glass ms-3" aria-labelledby="navbarDropdown">
               <%= link_to "Profile", "#", class: "dropdown-item" %>
               <%= link_to "Edit", "#", class: "dropdown-item" %>
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
