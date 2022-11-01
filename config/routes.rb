@@ -4,21 +4,17 @@ Rails.application.routes.draw do
 
   root to: "pages#home"
 
-  resources :customers do
+  resources :customers, except: %i[index] do
+    resources :hires, only: %i[show edit update]
     resources :reviews, only: %i[create edit update]
+
   end
   resources :artists do
-     resources :reviews, only: %i[create]
-     resources :hires, only: %i[create]
-     resources :hire_adds, only: %i[create]
+    resources :hires, only: %i[create]
+    resources :reviews, only: %i[create]
   end
   resources :reviews, only: %i[destroy]
   resources :hires, only: %i[destroy]
-
-
-
-
-
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

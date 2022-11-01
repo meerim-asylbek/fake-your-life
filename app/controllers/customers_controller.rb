@@ -30,7 +30,7 @@ class CustomersController < ApplicationController
   private
 
   def set_customer
-    @customer = Customer.find(params[:id])
+    @customer = Customer.find_by(user_id: current_user.id)
   end
 
   def customer_params

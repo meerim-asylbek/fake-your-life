@@ -15,10 +15,8 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @adds = Add.all
-    @hire = Hire.new(artist_id: @artist.id, customer_id: current_user.id)
-    @hire_add = HireAdd.new()
-    @hire_add = HireAdd.new()
+    @customer = Customer.find_by(user_id: current_user.id)
+    @hire = Hire.new()
     @review = Review.new()
   end
 
