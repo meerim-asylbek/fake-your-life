@@ -3,8 +3,14 @@
     <div class="navbar-brand d-flex align-items-center justify-content-center">
       <i class="fa-brands fa-joomla fa-2xl me-1"></i>
       <h6 class="m-0">FakeYourLife</h6>
-    </div>  
-    <div class="search"> 
+    </div>
+    <% if Artist.find_by(user_id: current_user).nil?  %>
+    <div class="create-artist d-flex align-items-center justify-content-center">
+      <%= link_to "Become a model", new_artist_path %>
+    </div>
+    <% end %>
+
+    <div class="search">
       <div class="d-flex">
         <div class="collapse collapse-horizontal search-fake mx-1" id="navbarTogglerSearch">
           <form class="d-flex" role="search" action="">
