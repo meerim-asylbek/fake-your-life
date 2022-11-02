@@ -18,6 +18,12 @@ class HiresController < ApplicationController
     end
   end
 
+  def destroy
+    @hire = Hire.find(params[:id])
+    @hire.destroy
+    redirect_to restaurants_path, status: :see_other
+  end
+
   private
 
   def hire_params
