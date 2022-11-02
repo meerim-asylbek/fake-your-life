@@ -1,10 +1,11 @@
 <div class="container mt-4">
   <div class="p-2 mb-3">
-    <h1><%= @artist.name %></h1>
+    <h1 class="fw-bold display-1"><%= @artist.name %></h1>
     <div class="d-flex">
-      <small class="mx-3"><%= @artist.category %></small>
       •
-      <small class="mx-3"><%= @artist.address %></small>
+      <small class="mx-3">Category: <%= @artist.category %></small>
+      •
+      <small class="mx-3">Address: <%= @artist.address %></small>
     </div>
   </div>
   <div class="glide rounded mb-4">
@@ -22,28 +23,29 @@
   </div>
   <h2><%= @artist.name %></h2>
   <div class="d-flex mb-3">
-    <small class="mx-2"><%= @artist.age %> years old</small>
     •
-    <small class="mx-2">From <%= @artist.price %>€</small>
+    <small class="mx-2"><strong>Age:</strong> <%= @artist.age %> years old</small>
     •
-    <small class="mx-2">Find me here: <%= @artist.address %></small>
+    <small class="mx-2"><strong>From:</strong> <%= @artist.price %>€</small>
+    •
+    <small class="mx-2"><b>Find me here:</b> <%= @artist.address %></small>
   </div>
   <hr class="mb-3">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-sm-7 my-3">
-        <h4>description:</h4>
+      <div class="col-12 col-sm-7 col-md-9 my-3">
+        <h3>description:</h3>
         <p><%= @artist.description %></p>
         <hr class="my-4">
         <div class="neu-form my-5 p-4">
-          <h5 class="py-3">Add your review</h5>
+          <h4 class="py-3">Add your review</h4>
           <%= simple_form_for [@artist, @review], data: { controller: "star-form" } do |f| %>
             <%= f.input :comment, placeholder: "Add your review here..." %>
             <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { controller: "star-rating", action: "change->star-form#submit"} }  %>
             <%= f.button :submit, class:"btn btn-outline-success my-3" %>
           <% end %>
         </div>
-        <div class="py-4 mb-4">
+        <div class="pb-4 mb-4">
           <h3>Reviews</h3>
           <% if @artist.reviews.empty? %>
             <small><em class="text-muted">Be the first one to review this list</em></small>
@@ -60,11 +62,11 @@
           <% end %>
         </div>
       </div>
-      <div class="col-12 col-sm-5">
-        <div class="neu-form sticky-top p-4">
+      <div class="col-12 col-sm-5 col-md-3">
+        <div class="neu-form sticky-top p-4 mt-5">
           <% customer_hire = Hire.find_by(customer_id: @customer.id) %>
           <% if customer_hire %>
-            <h2>Amazing <%= @customer.first_name %> you booked to <%= @artist.name %></h2>
+            <h3>Amazing <%= @customer.first_name %> you booked to <%= @artist.name %></h3>
             <hr>
             <small>From: <%= customer_hire.start_date %></small>
             <br>
@@ -72,13 +74,16 @@
             <p class="mt-4"> Make your experience better </p>
             <%= link_to "Add some options", customer_hire_path(customer_hire), :class => "btn btn-outline-success" %>
           <% else %>
-            <h2>Booking to <%=  %></h2>
+            <h3>Book <%= @artist.name %></h3>
             <%= simple_form_for [@artist, @hire], data: { controller: "hire-form" } do |f| %>
-              <%= f.label :start_date %>
-              <%= f.date_field :start_date, min: Date.tomorrow,
+              <%= f.label :start_date, class: "py-1" %>
+              <br>
+              <%= f.date_field :start_date, class: "py-1", min: Date.tomorrow,
                 data: { "hire-form-target": "startDate", "action": "change->hire-form#minEnd" } %>
-              <%= f.label :end_date %>
-              <%= f.date_field :end_date, data: { "hire-form-target": "endDate", "action": "change->hire-form#totalDays" } %>
+              <br>
+              <%= f.label :end_date, class: "py-1" %>
+              <br>
+              <%= f.date_field :end_date, class: "py-1", data: { "hire-form-target": "endDate", "action": "change->hire-form#totalDays" } %>
               <%= f.hidden_field :total_price, :data => { :"hire-form-target" => "totalForm" } %>
               <span data-hire-form-target="dailyPrice" hidden><%= @artist.price %></span>
               <hr>

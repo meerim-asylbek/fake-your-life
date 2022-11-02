@@ -1,5 +1,11 @@
 .navbar-fake{
   height: 45px;
+  h4 {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 900;
+    color:black;
+    //-webkit-text-stroke: 0.5px white;
+  }
 }
 
 .navbar-fake .navbar-collapse {
@@ -7,7 +13,7 @@
 }
 
 .search-fake {
-  width: 70vw;
+  width: 55vw;
 }
 .navside-fake {
   width: 60px;
