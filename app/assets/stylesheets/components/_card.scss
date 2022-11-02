@@ -1,13 +1,15 @@
 .card-category {
   position: relative;
   height: 200px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 0.5px 0.5px 3px #403d39;
   padding: 10px;
   h2 {
+    z-index: 102;
     color: white;
     position: absolute;
     bottom: 25px;
     left: 130px;
+    text-shadow: 1.5px 0.5px 6px black;
     transform: perspective(600px) rotateY(0deg);
     transition: transform 0.6s ease-in-out;
   }
@@ -17,7 +19,6 @@
     height: 145px;
     left: 24px;
     top: 50px;
-    //background: linear-gradient(180deg, #16CAF1 0%, #0143A7 78.65%);
     border-radius: 24px;
     transform: perspective(400px) rotateY(45deg);
     transition: transform 0.6s ease-in-out;
@@ -62,7 +63,6 @@
   opacity: 0;
   font-size: 18px;
   color: #fff;
-  //will-change: transform;
   transform: scale(0.1);
   transition: all 0.2s ease;
 }
@@ -74,6 +74,7 @@
 .container-cards {
 
   .card {
+    z-index: 110;
     position: relative;
     width: 400px;
     height: 200px;
@@ -115,7 +116,6 @@
       width: 300px;
       height: 200px;
       left: 0px;
-      // background-image: url($img-url);
       background-size: cover;
       filter: grayscale(100%);
     }
@@ -123,7 +123,7 @@
     .social {
       z-index: 100;
       position: absolute;
-      left: 60px;
+      left: 90px;
       top: 0;
       display: flex;
       justify-content: space-around;
@@ -131,6 +131,7 @@
       width: 180px;
       height: 64px;
       border-radius: 80px;
+      text-shadow: 0.5px 0.5px 3px #403d39;
     }
 
     .social i:nth-of-type(1) {
@@ -161,7 +162,7 @@
       bottom: 14px;
       width: 30px;
       height: 30px;
-      background-color: $warning;
+      background-color: $success;
       border: none;
       border-radius: 30px;
       cursor: pointer;
@@ -171,7 +172,7 @@
     }
 
     &:hover button {
-      transform: scale(16.5);
+      transform: scale(15);
     }
 
     &:hover p {

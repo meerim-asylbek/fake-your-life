@@ -26,21 +26,21 @@
   width: 38px;
   border-radius: 23px;
   background: #E7E7E7;
-  box-shadow:  5px 5px 10px #d5d5d5,
-             -5px -5px 10px #f9f9f9;
+  box-shadow:  1px 1px 3px #d5d5d5,
+             -1px -1px 3px #f9f9f9;
   transition: all 0.5 ease;
     &:hover {
       height: 38px;
       width: 38px;
       background: #E7E7E7;
-      box-shadow:  12px 12px 24px #b9b9b9,
-             -12px -12px 24px #ffffff;
+      box-shadow:  4px 4px 12px #b9b9b9,
+             -4px -4px 12px #ffffff;
     }
     &:active {
       height: 38px;
       width: 38px;
       background: linear-gradient(145deg, #d0d0d0, #f7f7f7);
-      box-shadow:  5px 5px 10px #cbcbcb,
-             -5px -5px 10px #ffffff;
+      box-shadow:  2px 2px 6px #cbcbcb,
+             -2px -2px 6px #ffffff;
     } 
 }
