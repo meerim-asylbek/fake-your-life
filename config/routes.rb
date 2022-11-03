@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :customers, except: %i[index] do
     resources :hires, only: %i[show edit update]
     resources :reviews, only: %i[create edit update]
-
   end
   resources :artists do
     resources :hires, only: %i[create]
@@ -15,6 +14,8 @@ Rails.application.routes.draw do
   end
   resources :reviews, only: %i[destroy]
   resources :hires, only: %i[destroy]
+
+  get '/dashboard', to: 'artists#dashboard', as: 'dashboard'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
