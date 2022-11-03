@@ -26,6 +26,12 @@ class ArtistsController < ApplicationController
     @customer = Customer.find_by(user_id: current_user.id)
     @hire = Hire.new()
     @review = Review.new()
+    #@markers = @artist.geocoded.map do |artist|
+  #{
+    #lat: artist.latitude,
+    #lng: artist.longitude
+  #}
+  #end
   end
 
   def new
