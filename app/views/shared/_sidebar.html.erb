@@ -1,4 +1,4 @@
-<div class="navside-fake d-flex sticky-top min-vh-100 bg-warning shadow">
+<div class="p-0 m-0 navside-fake d-flex sticky-top min-vh-100 bg-warning shadow">
     <ul class="nav flex-column mx-auto text-center align-items-center justify-content-center gap-5">
       <% if user_signed_in?%>
         <li class="nav-item btn-icon d-flex justify-content-center align-items-center">
@@ -23,7 +23,7 @@
             <% if customer.avatar.key.nil? %>
               <%= image_tag("default_user.png", class: "avatar") %>
             <% else %>
-              <%= cl_image_tag customer.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :height=>36, :width=>36, :crop=>"thumb", :zoom=>"0.5" %>
+              <%= cl_image_tag customer.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown"}, 'aria-haspopup': true, 'aria-expanded': false, :gravity=>"face", :crop=>"thumb", :zoom=>"0.5" %>
             <% end %>
 
             <div class="dropdown-menu dropdown-menu-end bg-glass ms-3" aria-labelledby="navbarDropdown">
