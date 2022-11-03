@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import HireFormController from "./hire_form_controller"
 application.register("hire-form", HireFormController)
 
+import MapController from "./map_controller"
+application.register("map", MapController)
+
 import StarFormController from "./star_form_controller"
 application.register("star-form", StarFormController)
 

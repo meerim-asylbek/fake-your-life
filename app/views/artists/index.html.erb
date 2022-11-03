@@ -1,49 +1,80 @@
-<div>
-<div class="absolute-top text-white d-flex flex-column align-items-center justify-content-center bg-index">
-  <h1 class="fw-bold display-1 mt-5 text-center">Welcome again <span class="text-success"><i><%= @customer.first_name %></i></span></h1>
-  <h1 class="text-center my-3">Are you ready to <i>Fake your life?</i></h1>
-    <i class="fa-solid fa-angles-down fa-2xl mt-5 pt-5"></i>
+<div class="container-fluid p-0 m-0">
+<div class="p-0 m-0 absolute-top position-relative text-white row align-items-center bg-index">
+  <div class="col-6 px-5 pt-5 mt-5">
+    <h1 class="fw-bold display-1 mt-5 text-center align-self-start">Welcome again <span class="trans-text bg-info px-2"><%= @customer.first_name %></span></h1>
+  </div>
+  <div class="shape-bg"></div>
+  <div class="col-6 align-self-end mt-5 pt-5 ps-5">
+    <div class="avatar-xl-bordered m-0">
+      <%= cl_image_tag @customer.avatar.key, class: "avatar-xl" %>
+    </div>
+    <div class="px-5 pt-3 mb-3 ms-5">
+      <h1 class="">Are you ready to</h1>
+      <h1 class="up-text"><b class="bg-info px-2 trans-text">Fake your life?</b></h1>
+    </div>
+  </div>
+  <i class="text-center fa-solid fa-angles-down fa-2xl m-0 p-0"></i>
 </div>
 <div class="container">
-  <hr class="mb-5">
+  <hr class="my-5">
   <div class="d-flex">
-  <h3 class="verticaltext">Categories </h3>
-  <div class="flex-grow-1 row mx-4 px-4 bg-category">
-    <div class="card-category col-12 col-sm-6 col-md-3 mb-4">
+  <h2 class="verticaltext bg-info m-0 py-3 text-center">Choose one category</h2>
+  <div class="flex-grow-1 row align-items-center mx-4 px-4 bg-category">
+    <div class="card-category col-12 col-sm-6 col-md-4 mb-4">
       <%= link_to artists_path(filter: 'Boyfriend') do %>
         <div class="rectangle" style="background: rgb(26,66,64); background: linear-gradient(0deg, rgba(26,66,64,1) 0%, rgba(56,140,134,0.1) 100%);"></div>
         <%= image_tag('boyfriend.png') %>
         <h2>Boyfriend</h2>
       <% end %>
     </div>
-    <div class="card-category col-12 col-sm-6 col-md-3 mb-4">
+    <div class="card-category col-12 col-sm-6 col-md-4 mb-4">
       <%= link_to artists_path(filter: 'Girlfriend') do %>
         <div class="rectangle" style="background: rgb(82,109,125); background: linear-gradient(0deg, rgba(82,109,125,1) 0%, rgba(157,210,241,0.1) 100%);"></div>
         <%= image_tag('girlfriend.png') %>
         <h2>Girlfriend</h2>
       <% end %>
     </div>
-    <div class="card-category col-12 col-sm-6 col-md-3 mb-4">
+    <div class="card-category col-12 col-sm-6 col-md-4 mb-4">
       <%= link_to artists_path(filter: 'Family') do %>
           <div class="rectangle" style="background: rgb(122,96,47); background: linear-gradient(0deg, rgba(122,96,47,1) 0%, rgba(255,199,99,0.1) 100%);"></div>
           <%= image_tag('family.png') %>
           <h2>Family</h2>
       <% end %>
     </div>
-    <div class="card-category col-12 col-sm-6 col-md-3 mb-4">
+    <div class="card-category col-12 col-sm-6 col-md-4 mb-4">
       <%= link_to artists_path(filter: 'Friends') do %>
           <div class="rectangle" style="background: rgb(89,32,22); background: linear-gradient(0deg, rgba(89,32,22,1) 0%, rgba(233,81,56,0.1) 100%);"></div>
           <%= image_tag('friends.png') %>
           <h2>Friends</h2>
       <% end %>
     </div>
-  </div>
-  </div>
-  <div class="container-cards mt-5">
-    <div class="text-center mb-3">
-      <h1 class="mb-0">Artists</h1>
+    <div class="card-category col-12 col-sm-6 col-md-4 mb-4">
+      <%= link_to artists_path(all: 'all') do %>
+          <div class="rectangle" style="background: rgb(64,61,57);
+            background: linear-gradient(0deg, rgba(64,61,57,1) 0%, rgba(64,61,57,0) 100%);"></div>
+          <%= image_tag 'all.png' %>
+          <h2>All</h2>
+      <% end %>
     </div>
-    <hr class="mb-5">
+    <div class="card-category col-12 col-sm-6 col-md-4 mb-4">
+      <%= link_to artists_path do %>
+          <div class="rectangle" style="background: rgb(205,69,47);
+            background: linear-gradient(0deg, rgba(205,69,47,1) 0%, rgba(205,69,47,0) 100%);"></div>
+          <%= image_tag('reset.png') %>
+          <h2>Reset</h2>
+      <% end %>
+    </div>
+  </div>
+  </div>
+  <hr class="my-5">
+  <div class="container-cards mt-5">
+    <% if params[:query] || params[:filter] || params[:all] %>
+    <div class="text-center mb-3">
+      <h1 class="mb-0 display-1 fw-bold trans-text2">Our models</h1>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Open map
+      </button>
+    </div>
     <div class="row justify-content-center">
     <% @artists.each do |artist| %>
       <% if artist.user == current_user  %>
@@ -69,8 +100,16 @@
           </div>
 
           <%= link_to artist_path(artist) do %>
-            <button>
-            </button>
+            <% case artist.category
+                when 'Boyfriend' %>
+                <button class="bg-success"></button>
+            <% when 'Girlfriend' %>
+                <button class="bg-warning"></button>
+            <% when 'Family' %>
+                <button class="bg-info"></button>
+            <% when 'Friends' %>
+                <button class="bg-dark"></button>
+            <% end %>
           <% end %>
         </div>
       <% else %>
@@ -82,13 +121,22 @@
           <% photo = artist.photos[0] %>
           <div class="pic" style="background-image: url('<%= cl_image_path photo.key, crop: :fill %>')"></div>
           <%= link_to artist_path(artist) do %>
-            <button>
-            </button>
+            <% case artist.category
+                when 'Boyfriend' %>
+                <button class="bg-success"></button>
+            <% when 'Girlfriend' %>
+                <button class="bg-warning"></button>
+            <% when 'Family' %>
+                <button class="bg-info"></button>
+            <% when 'Friends' %>
+                <button class="bg-dark"></button>
+            <% end %>
           <% end %>
       </div>
       <% end %>
     <% end %>
     </div>
+  <% end %>
   </div>
 </div>
 </div>

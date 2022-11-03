@@ -6,11 +6,19 @@ class ArtistsController < ApplicationController
     if params[:query].present? && !params[:query].empty?
       @query = params[:query]
       @artists = Artist.where("name LIKE ?", "%#{params[:query]}%")
-    elsif index_params
+    elsif params[:all].present? && !params[:all].empty?
+      @artists = Artist.all
+    elsif params[:filter].present? && !params[:filter].empty?
       @filter = params[:filter]
       @artists = Artist.where("category LIKE ?", "%#{params[:filter]}%")
     else
       @artists = Artist.all
+    end
+    @markers = @artists.geocoded.map do |artist|
+      {
+        lat: artist.latitude,
+        lng: artist.longitude
+      }
     end
   end
 
