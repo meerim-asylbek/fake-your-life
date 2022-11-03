@@ -7,14 +7,17 @@
         <% end %>
       </div>
     </div>
-
     <div class="search">
-     <% if Artist.find_by(user_id: current_user).nil?  %>
-    <div class="create-artist d-flex align-items-center justify-content-center">
-      <%= link_to "Become a model", new_artist_path %>
-    </div>
-    <% end %>
       <div class="d-flex">
+        <% if Artist.find_by(user_id: current_user).nil?  %>
+        <div class="create-artist">
+          <%= link_to "Become a model", new_artist_path, class: "btn btn-info" %>
+        </div>
+        <% else %>
+        <div class="create-artist">
+          <%= link_to "View my model profile", dashboard_path, class: "btn btn-info" %>
+        </div>
+        <% end %>
         <div class="collapse collapse-horizontal search-fake mx-1" id="navbarTogglerSearch">
           <form class="d-flex" role="search" action="">
             <input class="form-control bg-glass" type="search" placeholder="Search by name" aria-label="Search" name="query" value="<%= params[:query] %>">

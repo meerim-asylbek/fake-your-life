@@ -34,6 +34,10 @@ class ArtistsController < ApplicationController
   #end
   end
 
+  def dashboard
+    @artist = Artist.find_by(user_id: current_user)
+  end
+
   def new
     @artist = Artist.new
   end

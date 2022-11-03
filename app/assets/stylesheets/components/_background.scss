@@ -5,7 +5,8 @@
 
 .bg-image {
   background-size: 100%;
-} 
+  z-index: -100;
+}
 .bg-index {
   z-index: -2;
   background-color: $warning;
