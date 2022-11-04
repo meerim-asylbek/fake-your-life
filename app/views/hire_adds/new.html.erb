@@ -1,0 +1,11 @@
+<div class="fake-modal modal-content">
+
+<%= simple_form_for [@hire, @hire_add] do |f| %>
+  <div class="modal-body">
+    <%= f.association :add, collection: Add.all.order(:name), prompt: "Select your extra", input_html: { data: { controller: "tom-select" }, class: 'multiselectuser, fake_modal', multiple: true } %>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit "Add extra", class: "btn btn-info" %>
+  </div>
+<% end %>
+</div>

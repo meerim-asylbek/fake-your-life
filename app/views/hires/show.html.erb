@@ -1,6 +1,7 @@
 <div class="container">
-<div class="row">
-  <div class="col-4 my-5">
+<div class="row mt-5 mb-0">
+  <h1 class="display-1 mt-5">Details of your booking <%= @customer.first_name %></h1>
+  <div class="col-4">
     <div class="neu-form mt-5">
       <div class="d-flex flex-column justify-content-center">
         <div id="carouselFade position-relative" class="carousel slide carousel-fade carousel-fake" data-bs-ride="carousel">
@@ -35,7 +36,7 @@
       </div>
     </div>
   </div>
-  <div class="col-8 mt-5">
+  <div class="col-8 mt-0">
     <div class="container mb-3">
       <div class="d-flex justify-content-between my-5">
           <span class="add-tag btn btn-info"><%= pluralize(@hire.adds.size, "add") %></span>
@@ -49,14 +50,16 @@
       </div>
       <div class="row my-2">
         <% @hire.adds.each do |add| %>
-          <% hire_add = HireAdd.find_by(list: @hire, add: add) %>
-          <div class="col-12 col-sm-6 mb-4" data-aos="zoom-in">
-            <div class="cards-form h-100">
-              <%= image_tag add.picture_url, alt: add.name, class: "add-img" %>
+          <% hire_add = HireAdd.find_by(hire: @hire, add: add) %>
+          <% @hire.total_price += add.price %>
+          <div class="col-12 col-sm-6 mb-2">
+            <div class="cards-form w-100">
+              <%= image_tag add.picture_url, alt: add.name, class: "add-img w-100" %>
               <div class="p-4 d-flex flex-column">
                 <strong><%= add.name %> <span class="text-muted">• <%= add.category %></span></strong>
-                <div class="d-flex align-items-end justify-content-between pt-4">
-                  <small><%= link_to "delete", hire_add_path(hire_add), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{add.name} from your booking?"}, class: 'text-decoration-none btn btn-flat' %></small>
+                <strong>€ <%= add.price %> <span class="text-muted">• Price</span></strong>
+                <div class="d-flex align-items-end justify-content-between pt-3">
+                  <small><%= link_to "delete", hire_add_path(hire_add), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to remove #{add.name} from your booking?"}, class: 'text-decoration-none btn btn-danger' %></small>
                 </div>
               </div>
             </div>
