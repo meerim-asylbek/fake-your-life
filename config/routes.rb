@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :hire_adds, only: %i[destroy]
 
   get '/dashboard', to: 'artists#dashboard', as: 'dashboard'
+  get '/profile/:id', to: 'customers#profile', as: 'profile'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

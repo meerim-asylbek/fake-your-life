@@ -5,7 +5,7 @@
       <div class="col-md-4 mb-3">
         <div class="neu-form mt-5">
           <div class="d-flex flex-column align-items-center text-center">
-            <%= cl_image_tag @customer.avatar.key, crop: :fill, class: "card-img-top" %>
+            <%= cl_image_tag @customer.avatar.key, height: 350, width: 350, class: "card-img-top" %>
             <div class="mt-3">
               <h2 class="fw-bold py-3"><%= @customer.first_name %> <%= @customer.last_name %></h2>
               <p><%= @customer.age %> years old</p>
@@ -27,11 +27,14 @@
             <small><em class="text-muted">You didn't hire anyone yet</em></small>
           <% end %>
           <% @customer.hires.each do |hire| %>
-            <div>
-              <p class="mb-0"><%= link_to hire.artist.name, artist_path(hire.artist) %></p>
-              <p class="mb-0"><%= hire.start_date %></p>
-              <p class="mb-0"><%= hire.end_date %></p>
-              <p class="mb-0"><%= hire.total_price %></p>
+            <div class="card-hire">
+            <%= cl_image_tag hire.artist.photos[0].key, height: 50, width: 50 %>
+              <div class="card-hire-infos">
+                <p class="mb-0"><%= link_to hire.artist.name, artist_path(hire.artist) %></p>
+                <p class="mb-0"><%= hire.start_date %></p>
+                <p class="mb-0"><%= hire.end_date %></p>
+                <p class="mb-0"><%= hire.total_price %></p>
+              </div>
             </div>
             <hr>
           <% end %>
