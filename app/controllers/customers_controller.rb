@@ -1,5 +1,4 @@
 class CustomersController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create]
   before_action :set_customer, only: %i[show create edit update]
 
   def new
