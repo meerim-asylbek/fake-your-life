@@ -89,7 +89,7 @@
             </div>
             <hr>
             <h4 class="mt-6"> Make your experience better </h6>
-            <%= link_to "Add some options", customer_hire_path(@hire), :class => "btn btn-outline-success ms-5 mt-1" %>
+            <%= link_to "Add some options", hire_path(@hire), :class => "btn btn-outline-success ms-5 mt-1" %>
           <% else %>
             <h3>Book <%= @artist.name %></h3>
             <%= simple_form_for [@artist, @hire], data: { controller: "hire-form" } do |f| %>
