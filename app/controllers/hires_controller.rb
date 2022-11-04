@@ -4,6 +4,13 @@ class HiresController < ApplicationController
     @hire = Hire.new
   end
 
+  def show
+    @hire = Hire.find(params[:id])
+    @customer = Customer.find(@hire.customer_id)
+    @artist = Artist.find(@hire.artist_id)
+    @hire_add = HireAdd.new()
+  end
+
   def create
     @hire = Hire.new(hire_params)
     @customer = Customer.find_by(user_id: current_user.id)
