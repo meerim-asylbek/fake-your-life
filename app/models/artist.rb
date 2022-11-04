@@ -1,12 +1,11 @@
 class Artist < ApplicationRecord
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
-
   has_many_attached :photos
   belongs_to :user
   has_many :hires, dependent: :destroy
   has_many :customers, through: :hires
   has_many :reviews
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
 
   validates :name, presence: true, allow_blank: false
   validates :category, presence: true, allow_blank: false

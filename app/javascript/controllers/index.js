@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AddressAutocompleteController from "./address_autocomplete_controller"
+application.register("address-autocomplete", AddressAutocompleteController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
@@ -13,9 +16,6 @@ application.register("hire-form", HireFormController)
 import MapController from "./map_controller"
 application.register("map", MapController)
 
-import NavbarController from "./navbar_controller"
-application.register("navbar", NavbarController)
-
 import StarFormController from "./star_form_controller"
 application.register("star-form", StarFormController)
 
@@ -24,6 +24,3 @@ application.register("star-rating", StarRatingController)
 
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
-
-import GlideController from "./glide_controller"
-application.register("glide", GlideController)

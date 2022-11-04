@@ -71,8 +71,8 @@
     <% if params[:query] || params[:filter] || params[:all] %>
     <div class="text-center mb-3">
       <h1 class="mb-0 display-1 fw-bold trans-text2">Our models</h1>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
+      <button type="button" class="btn btn-outline-primary mt-3" data-bs-toggle="modal" data-bs-target="#mapModal">
+        Open Map
       </button>
     </div>
     <div class="row justify-content-center">
@@ -140,3 +140,5 @@
   </div>
 </div>
 </div>
+
+<%= render "artists/modal", artists: @artists, markers: @markers %>

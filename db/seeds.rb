@@ -36,11 +36,13 @@ end
 
 puts "Users created"
 
-User.all.each do |user|
+ADDRESSES = ["36, Schneeammerweg", "6, Saalburgstraße", "269, Blumberger Damm", "31A, Beuthener Straße", "34, Leo-Baeck-Straße", "53a, Otto-Nagel-Straße", "10, Goltzstraße", "2, Wartenburgstraße", "17, Ludwigsfelder Straße", "Charité-Campus Benjamin Franklin, 30, Hindenburgdamm", "11, Kerkowstraße", "10, Schwarzmeerstraße", "Sportplatz „Willi Sänger“, 186-216, Köpenicker Landstraße", "51, Schwabinger Weg", "22, Debussystraße", "25, Indira-Gandhi-Straße", "Kita - An den Achterhöfen, 1, An den Achterhöfen", "3A, Stolbergstraße", "228, Müggelseedamm", "Strandbad Tegelsee, 21, Schwarzer Weg"]
+
+User.all.each_with_index do |user, i|
   customer = Customer.create(
     first_name: Faker::Name.unique.first_name,
     last_name: Faker::Name.unique.last_name,
-    address: Faker::Address.unique.full_address,
+    address: ADDRESSES[i], 
     age: rand(18..99),
     user_id: user.id
   )
@@ -62,6 +64,7 @@ User.all.each do |user|
     artist.photos.attach(io: file, filename: "image.png", content_type: "image/png")
     artist.save
   end
+  i += 1
 end
 
 puts "Customers created"

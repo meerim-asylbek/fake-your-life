@@ -6,32 +6,39 @@ class ArtistsController < ApplicationController
     if params[:query].present? && !params[:query].empty?
       @query = params[:query]
       @artists = Artist.where("name LIKE ?", "%#{params[:query]}%")
+      set_markers(@artists)
     elsif params[:all].present? && !params[:all].empty?
       @artists = Artist.all
+      set_markers(@artists)
     elsif params[:filter].present? && !params[:filter].empty?
       @filter = params[:filter]
       @artists = Artist.where("category LIKE ?", "%#{params[:filter]}%")
+      set_markers(@artists)
     else
       @artists = Artist.all
+      set_markers(@artists)
     end
     @markers = @artists.geocoded.map do |artist|
       {
         lat: artist.latitude,
-        lng: artist.longitude
+        lng: artist.longitude,
+        info_window: render_to_string(partial: "info_window", locals: {artist: artist})
       }
     end
   end
 
   def show
     @customer = Customer.find_by(user_id: current_user.id)
-    @hire = Hire.new()
     @review = Review.new()
-    #@markers = @artist.geocoded.map do |artist|
-  #{
-    #lat: artist.latitude,
-    #lng: artist.longitude
-  #}
-  #end
+    if Hire.find_by(customer_id: @customer.id, artist_id: @artist.id) 
+      @hire = Hire.find_by(customer_id: @customer.id, artist_id: @artist.id) 
+    else
+      @hire = Hire.new()
+    end
+    @markers = [{
+      lat: @artist.latitude,
+      lng: @artist.longitude
+      }]
   end
 
   def dashboard
@@ -79,6 +86,15 @@ class ArtistsController < ApplicationController
 
   def index_params
     params.permit(:filter, :query)
+  end
+
+  def set_markers(artists)
+    @markers = artists.geocoded.map do |artist|
+      {
+        lat: artist.latitude,
+        lng: artist.longitude
+      }
+    end
   end
 
 end
