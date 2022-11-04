@@ -10,18 +10,17 @@ class ReviewsController < ApplicationController
       redirect_to artist_path(@artist)
     else
       if Hire.find_by(customer_id: @customer, artist_id: @artist)
-        @hire = Hire.find_by(customer_id: @customer, artist_id: @artist) 
+        @hire = Hire.find_by(customer_id: @customer, artist_id: @artist)
       else
         @hire = Hire.new(customer_id: @customer, artist_id: @artist)
       end
       @review = Review.new
       render 'artists/show', status: :unprocessable_entity
     end
-    raise
   end
 
   def edit
- 
+
   end
 
   def update

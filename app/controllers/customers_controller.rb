@@ -18,6 +18,10 @@ class CustomersController < ApplicationController
   def show
   end
 
+  def profile
+    @customer = Customer.find(params[:id])
+  end
+
   def edit
 
   end
