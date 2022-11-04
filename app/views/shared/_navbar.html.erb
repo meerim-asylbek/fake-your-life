@@ -9,11 +9,17 @@
     </div>
     <div class="search">
       <div class="d-flex">
+      <% if user_signed_in? %>
         <% if Artist.find_by(user_id: current_user).nil?  %>
           <div class="create-artist">
             <%= link_to "Become a model", new_artist_path, class: "btn btn-info me-2" %>
           </div>
         <% end %>
+        <% else %>
+        <div>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %>
+        </div>
+      <% end %>
         <div class="collapse collapse-horizontal search-fake mx-1" id="navbarTogglerSearch">
           <form class="d-flex" role="search" action="">
             <input class="form-control bg-glass" type="search" placeholder="Search by name" aria-label="Search" name="query" value="<%= params[:query] %>">
