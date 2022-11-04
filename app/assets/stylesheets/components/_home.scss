@@ -1,0 +1,24 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 400px 400px 400px;
+  grid-gap: 20px;
+  background-color: #fff;
+  color: #444;
+  padding: 50px;
+  padding-bottom: 15px;
+}
+
+.box {
+  color: grey;
+  border-radius: 5px;
+  margin-left: 30px;
+  font-size: 100%;
+  text-align: center;
+  font-family: "Manrope", "Helvetica", "sans-serif";
+
+  .card-img-top {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding-bottom: 10px;
+  }
+}
