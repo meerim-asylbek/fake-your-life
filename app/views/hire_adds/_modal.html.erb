@@ -1,8 +1,8 @@
-<div class="cards-bg modal fade" id="new_add_modal" tabindex="-1" role="dialog">
+<div class="cards-bg modal fade bg-modal" id="new_add_modal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="cards-form modal-content">
+    <div class="fake-modal modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Add an extra to your price <%= hire.total_price %></h4>
+        <h3 class="modal-title text-center"><%= Customer.find_by(user_id: current_user.id).first_name %> add an extra to your booking</h3>
         <button type="button" class="close btn fs-2" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
 
       <%= simple_form_for [hire, hire_add] do |f| %>
         <div class="modal-body">
-          <%= f.association :add, collection: Add.all.order(:name), prompt: "Select your extra", input_html: { data: { controller: "tom-select" } }, class: "cards-form" %>
+          <%= f.association :add, collection: Add.all.order(:name), prompt: "Select your extra", input_html: { data: { controller: "tom-select" }, class: 'multiselectuser, fake_modal', multiple: true } %>
         </div>
         <div class="modal-footer">
-          <%= f.submit "Add extra", class: "btn btn-outline-success" %>
-          <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Back</button>
+          <%= f.submit "Add extra", class: "btn btn-info" %>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Back</button>
         </div>
       <% end %>
     </div>
