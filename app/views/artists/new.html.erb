@@ -1,37 +1,39 @@
-<div class="bg-image"
-     style="background-image: url('https://images.unsplash.com/photo-1481152508843-1ec796b30a8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')">
-  <div class="container">
+<div class="bg-image h-100 opacity-75"
+     style="background-image: url('https://images.unsplash.com/photo-1468186402854-9a641fd7a7c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80')">
+  <div class="container pt-5">
     <div class="row justify-content-center">
-      <div class="col-md-5">
-        <div class="card opacity-75">
-        <h2 class="card-title text-center">Become an artist</h2>
-          <div class="card-body py-md-4">
+      <div class="col-md-5 pt-5">
+        <div class="neu-form">
+        <h2 class="card-title text-center pt-2">Become an artist</h2>
+          <div class="card-body py-md-4 mb-4">
             <%= simple_form_for [@user, @artist] do |f| %>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :name, class:"form-control" %>
               </div>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :category %>
               </div>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :age %>
               </div>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :description %>
               </div>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :address, class: "d-none",
                   input_html: {data: {address_autocomplete_target: "address"}},
                   wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
                 %>
               </div>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :photos %>
               </div>
-              <div class="form-group">
+              <div class="form-group px-3">
                 <%= f.input :price %>
               </div>
-              <%= f.submit "Sign up", class: "btn btn-primary" %>
+              <div class="px-3">
+              <%= f.submit "Sign up", class: "btn btn-info px-3" %>
+              </div>
             <% end %>
           </div>
         </div>
