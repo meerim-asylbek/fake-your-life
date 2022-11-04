@@ -183,3 +183,36 @@
     }
   }
 }
+
+.card-hire {
+  overflow: hidden;
+  height: 72px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 72px;
+    width: 72px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  a {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    text-decoration: none;
+  }
+
+  p {
+    font-size: 12px;
+    line-height: 1;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 4px;
+  }
+  .card-hire-infos {
+    padding: 16px;
+  }
+}
