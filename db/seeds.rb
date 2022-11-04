@@ -42,11 +42,11 @@ User.all.each_with_index do |user, i|
   customer = Customer.create(
     first_name: Faker::Name.unique.first_name,
     last_name: Faker::Name.unique.last_name,
-    address: ADDRESSES[i], 
+    address: ADDRESSES[i],
     age: rand(18..99),
     user_id: user.id
   )
-  avatar = URI.open("https://source.unsplash.com/random/150x150/?profile")
+  avatar = URI.open("https://source.unsplash.com/random/350x350/?profile")
   customer.avatar.attach(io: avatar, filename: "image.png", content_type: "image/png")
   customer.save
 
