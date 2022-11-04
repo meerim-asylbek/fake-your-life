@@ -14,6 +14,7 @@ class HiresController < ApplicationController
       redirect_to artist_path(@artist)
     else
       @hire = Hire.new
+      @review = Review.new
       render 'artists/show', status: :unprocessable_entity
     end
   end

@@ -1,9 +1,12 @@
-<h1>New artist</h1>
+<h1>Edit artist</h1>
 <%= simple_form_for [@user, @artist] do |f| %>
 
   <%= f.input :name %>
   <%= f.input :category %>
-  <%= f.input :address %>
+  <%= f.input :address,
+    input_html: {data: {address_autocomplete_target: "address"}, class: "d-none"},
+    wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
+  %>
   <%= f.input :description %>
   <%= f.input :price %>
   <%= f.input :photos %>

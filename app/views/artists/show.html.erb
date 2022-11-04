@@ -9,7 +9,7 @@
     </div>
   </div>
   <div id="carouselExampleFade" class="carousel slide carousel-fade carousel-fake" data-bs-ride="carousel">
-    <div class="carousel-inner">
+    <div class="carousel-inner rounded">
       <div class="carousel-item active">
         <img src="<%= cl_image_path @artist.photos[0].key %>" class="d-block w-100" alt="...">
       </div>
@@ -29,7 +29,7 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-  <h2><%= @artist.name %></h2>
+  <h2 class="mt-4"><%= @artist.name %></h2>
   <div class="d-flex mb-3">
     •
     <small class="mx-2"><strong>Age:</strong> <%= @artist.age %> years old</small>
@@ -49,7 +49,7 @@
           <h4 class="py-3">Add your review</h4>
           <%= simple_form_for [@artist, @review], data: { controller: "star-form" } do |f| %>
             <%= f.input :comment, placeholder: "Add your review here..." %>
-            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { controller: "star-rating", action: "change->star-form#submit"} }  %>
+            <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { controller: "star-rating"} }  %>
             <%= f.button :submit, class:"btn btn-outline-success my-3" %>
           <% end %>
         </div>
@@ -71,16 +71,25 @@
         </div>
       </div>
       <div class="col-12 col-sm-5 col-md-3">
-        <div class="neu-form sticky-top p-4 mt-5">
-          <% customer_hire = Hire.find_by(customer_id: @customer.id) %>
-          <% if customer_hire %>
+        <div style="width: 100%; height: 200px;"
+            data-controller="map"
+            data-map-markers-value="<%= @markers.to_json %>"
+            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+        <div class="neu-form sticky-top p-4 mt-4">
+          <% if @hire.customer_id == @customer.id %>
             <h3>Amazing <%= @customer.first_name %> you booked to <%= @artist.name %></h3>
             <hr>
-            <small>From: <%= customer_hire.start_date %></small>
+            <small>From: <%= @hire.start_date %></small>
             <br>
-            <small>to: <%= customer_hire.end_date %></small>
-            <p class="mt-4"> Make your experience better </p>
-            <%= link_to "Add some options", customer_hire_path(customer_hire), :class => "btn btn-outline-success" %>
+            <small>to: <%= @hire.end_date %></small>
+            <div class="d-flex align-items-center my-2">
+              <h3 class="my-0 me-2">Total:</h3>
+              <i class="fa-solid fa-euro-sign"></i>
+              <h4 class="my-0 mx-2"><%= @hire.total_price %></h4>
+            </div>
+            <hr>
+            <h4 class="mt-6"> Make your experience better </h6>
+            <%= link_to "Add some options", customer_hire_path(@hire), :class => "btn btn-outline-success ms-5 mt-1" %>
           <% else %>
             <h3>Book <%= @artist.name %></h3>
             <%= simple_form_for [@artist, @hire], data: { controller: "hire-form" } do |f| %>
@@ -104,10 +113,6 @@
             <% end %>
           <% end %>
         </div>
-        <div style="width: 100%; height: 600px;"
-            data-controller="map"
-            data-map-markers-value="<%= @markers.to_json %>"
-            data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
       </div>
     </div>
   </div>
