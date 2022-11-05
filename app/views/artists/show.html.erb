@@ -53,13 +53,13 @@
             <%= f.button :submit, class:"btn btn-outline-success my-3" %>
           <% end %>
         </div>
-        <div class="pb-4 mb-4">
+        <div class="pb-4 mb-4" data-insert-review-target="items">
           <h3>Reviews</h3>
           <% if @artist.reviews.empty? %>
             <small><em class="text-muted">Be the first one to review this list</em></small>
           <% end %>
           <% @artist.reviews.each do |review| %>
-            <div data-insert-review-target="items">
+            <div >
               <% review.rating.times do %>
                 <i class="fa-solid fa-star"></i>
               <% end %>

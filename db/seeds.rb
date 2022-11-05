@@ -304,9 +304,3 @@ puts "reviews created"
 
  puts "Adds created"
 
-
- meerim = User.create(
-  email: "meerim@fake.com",
-  password: 123456
-)
-
