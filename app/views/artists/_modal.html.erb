@@ -1,12 +1,12 @@
 <div class="modal fade bg-modal" id="mapModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content fake-modal m-0 p-0">
-      <div class="modal-header">
-        <h1 class="modal-title text-center" id="exampleModalLabel">Find the model for you</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-header px-3 py-0">
+        <h1 class="modal-title text-center m-auto" id="exampleModalLabel">Find the model for you</h1>
+        <button type="button" class="btn-close p-0 m-0" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div id="map" style="width: 100%; height: 600px;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        <div id="map" style="width: 100%; height: 600px; overflow: hidden;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
     </div>

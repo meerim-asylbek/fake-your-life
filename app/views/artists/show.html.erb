@@ -41,13 +41,13 @@
   <hr class="mb-3">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12 col-sm-7 col-md-9 my-3">
+      <div class="col-12 col-sm-7 col-md-9 my-3" data-controller="insert-review">
         <h3>description:</h3>
         <p><%= @artist.description %></p>
         <hr class="my-4">
         <div class="neu-form my-5 p-4">
           <h4 class="py-3">Add your review</h4>
-          <%= simple_form_for [@artist, @review], data: { controller: "star-form" } do |f| %>
+          <%= simple_form_for [@artist, @review], data: { controller: "star-form", insert_review_target: "form", action: "submit->insert-review#send" } do |f| %>
             <%= f.input :comment, placeholder: "Add your review here..." %>
             <%= f.input :rating, collection: (1..5).to_a, label: "Rate your experience", input_html: {data: { controller: "star-rating"} }  %>
             <%= f.button :submit, class:"btn btn-outline-success my-3" %>
@@ -59,7 +59,7 @@
             <small><em class="text-muted">Be the first one to review this list</em></small>
           <% end %>
           <% @artist.reviews.each do |review| %>
-            <div>
+            <div data-insert-review-target="items">
               <% review.rating.times do %>
                 <i class="fa-solid fa-star"></i>
               <% end %>

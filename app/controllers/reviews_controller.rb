@@ -12,6 +12,17 @@ class ReviewsController < ApplicationController
       @review = Review.new
       render 'artists/show', status: :unprocessable_entity
     end
+
+  respond_to do |format|
+    if @review.save
+      format.html { redirect_to artist_path(@restaurant) }
+      format.json # Follow the classic Rails flow and look for a create.json view
+    else
+      format.html { render "restaurants/show", status: :unprocessable_entity }
+      format.json # Follow the classic Rails flow and look for a create.json view
+    end
+  end
+,
   end
 
   def edit
