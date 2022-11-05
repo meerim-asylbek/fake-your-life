@@ -1,11 +1,25 @@
-
-
 <div class="card-info-window">
+<%= link_to artist_path(artist) do %>
   <%= cl_image_tag artist.photos[0].key, crop: :fill %>
+<% end %>
   <div class="card-info-window-infos">
     <div>
       <h2><%= artist.name %></h2>
       <p><%= artist.address %></p>
+      <% if artist.average_rating == "undefined" %>
+        <p>No reviews yet</p>
+      <% else %>
+        <span><%= artist.average_rating %></span>
+        <span>
+          <% artist.average_rating_div[0].times do %>
+            <i class="fa-solid fa-star"></i>
+          <% end %>
+            <% if artist.average_rating_div[1] > 0 %>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            <% end %>
+        </span>
+        <span><%= artist.rating_quantity %> reviews</span>
+      <% end %>
     </div>
     <h2><%= artist.price %>€</h2>
   </div>
