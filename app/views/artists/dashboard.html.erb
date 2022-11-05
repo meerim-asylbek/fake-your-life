@@ -44,7 +44,7 @@
         <% end %>
         <% hires.each do |hire| %>
         <% @customer = hire.customer %>
-          <%= link_to customer_hire_path(@customer, hire) do %>
+          <%= link_to hire_path(hire) do %>
             <div class="card-hire">
               <%= cl_image_tag hire.customer.avatar.key, height: 50, width: 50 %>
               <div class="card-hire-infos">

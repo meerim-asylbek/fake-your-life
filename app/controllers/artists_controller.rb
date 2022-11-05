@@ -30,8 +30,8 @@ class ArtistsController < ApplicationController
   def show
     @customer = Customer.find_by(user_id: current_user.id)
     @review = Review.new()
-    if Hire.find_by(customer_id: @customer.id, artist_id: @artist.id) 
-      @hire = Hire.find_by(customer_id: @customer.id, artist_id: @artist.id) 
+    if Hire.find_by(customer_id: @customer.id, artist_id: @artist.id)
+      @hire = Hire.find_by(customer_id: @customer.id, artist_id: @artist.id)
     else
       @hire = Hire.new()
     end
@@ -74,6 +74,13 @@ class ArtistsController < ApplicationController
   def edit
   end
 
+  # def average_reviews
+  #   @artist = Artist.find(params[:id])
+  #   @reviews = Review.where(artist_id: @artist)
+  #   @ratings = []
+  #   @reviews.each do |review|
+  # end
+
   private
 
   def set_artist
@@ -96,5 +103,4 @@ class ArtistsController < ApplicationController
       }
     end
   end
-
 end
