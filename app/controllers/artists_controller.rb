@@ -4,8 +4,11 @@ class ArtistsController < ApplicationController
   def index
     @customer = Customer.find_by(user_id: current_user.id)
     if params[:query].present? && !params[:query].empty?
-      @query = params[:query]
-      @artists = Artist.where("name LIKE ?", "%#{params[:query]}%")
+      #@query = params[:query]
+
+      #query_sql = "name @@ :query OR description @@ :query OR category @@ :query"
+      #@artists = Artist.where(query_sql, query: "%#{params[:query]}%")
+      @artists = Artist.search_fake(params[:query])
       set_markers(@artists)
     elsif params[:all].present? && !params[:all].empty?
       @artists = Artist.all

@@ -15,6 +15,14 @@ class Artist < ApplicationRecord
   validates :age, presence: true, allow_blank: false, numericality: { only_integer: true, greater_than_or_equal_to: 18 }
   validates :photos, presence: true, allow_blank: false
 
+
+ include PgSearch::Model
+  pg_search_scope :search_fake,
+    against: [ :name, :description, :category ],
+    using: {
+      tsearch: { prefix: true } 
+  }
+
   def rating_quantity
     self.reviews.size
   end
@@ -34,4 +42,5 @@ class Artist < ApplicationRecord
       'undefined'
     end
   end
+
 end
