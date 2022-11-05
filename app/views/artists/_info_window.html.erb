@@ -1,2 +1,12 @@
-<h2><%= artist.name %></h2>
-<p><%= artist.address %></p>
+
+
+<div class="card-info-window">
+  <%= cl_image_tag artist.photos[0].key, crop: :fill %>
+  <div class="card-info-window-infos">
+    <div>
+      <h2><%= artist.name %></h2>
+      <p><%= artist.address %></p>
+    </div>
+    <h2><%= artist.price %>€</h2>
+  </div>
+</div>

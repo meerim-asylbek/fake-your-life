@@ -29,7 +29,7 @@ class HiresController < ApplicationController
   def destroy
     @hire = Hire.find(params[:id])
     @hire.destroy
-    redirect_to restaurants_path, status: :see_other
+    redirect_to artists_path, status: :see_other
   end
 
   private
