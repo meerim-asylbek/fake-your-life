@@ -27,97 +27,181 @@ User.create(
   password: 123456
 )
 
-10.times do
+40.times do
   User.create(
     email: Faker::Internet.unique.email,
     password: 123456
   )
 end
 
-puts "Users created"
+puts "40 users created"
 
-ADDRESSES = ["36, Schneeammerweg", "6, Saalburgstraße", "269, Blumberger Damm", "31A, Beuthener Straße", "34, Leo-Baeck-Straße", "53a, Otto-Nagel-Straße", "10, Goltzstraße", "2, Wartenburgstraße", "17, Ludwigsfelder Straße", "Charité-Campus Benjamin Franklin, 30, Hindenburgdamm", "11, Kerkowstraße", "10, Schwarzmeerstraße", "Sportplatz „Willi Sänger“, 186-216, Köpenicker Landstraße", "51, Schwabinger Weg", "22, Debussystraße", "25, Indira-Gandhi-Straße", "Kita - An den Achterhöfen, 1, An den Achterhöfen", "3A, Stolbergstraße", "228, Müggelseedamm", "Strandbad Tegelsee, 21, Schwarzer Weg"]
 
-User.all.each_with_index do |user, i|
+ADDRESSES_YOUNG_BF = ["21, Warnemünder Straße", "8, Waldsteg", "34, Budapester Straße", "4, Waitzstraße", "19, Kressenweg"]
+ADDRESSES_OLD_BF = ["19, Nicolaistraße", "30D, Malchower Weg", "105, Buschsperlingweg", "68, Roedernallee", "48, Schönhauser Straße"]
+ADDRESSES_FAMILY = ["49, Reinickendorfer Straße", "Waschhaus, 42, Gartenstraße", "5, Muschelkalkweg", "2, Wartenburgstraße", "49, Fritz-Werner-Straße", "35A, Argoallee", "10, Goltzstraße", "5A, Selbhornweg", "14, Zepernicker Straße", "43, Straße 265"]
+
+young_boyfriends = User.all.slice[19..23]
+old_boyfriends = User.all.slice[24..29]
+family = User.all.slice[30..39]
+
+# Young boyfriends
+young_boyfriends.each_with_index do |user, i|
   customer = Customer.create(
-    first_name: Faker::Name.unique.first_name,
+    first_name: Faker::Name.unique.male_first_name,
     last_name: Faker::Name.unique.last_name,
-    address: ADDRESSES[i],
-    age: rand(18..99),
+    address: ADDRESSES_YOUNG_BF[i],
+    age: rand(18..35),
     user_id: user.id
   )
-  avatar = URI.open("https://source.unsplash.com/random/350x350/?profile")
+  avatar = URI.open("https://source.unsplash.com/random/450x450/?profile-man")
   customer.avatar.attach(io: avatar, filename: "image.png", content_type: "image/png")
   customer.save
 
   artist = Artist.create(
     name: customer.first_name,
-    category: ['Boyfriend', 'Girlfriend', 'Family', 'Friends'].sample,
+    category: 'Boyfriend',
     address: customer.address,
     description: Faker::TvShows::Friends.quote,
-    price: rand(20..999),
+    price: rand(99..299),
     age: customer.age,
     user_id: user.id
   )
   3.times do
-    file = URI.open("https://source.unsplash.com/random/1250x720/?'#{artist.category}'")
+    file = URI.open("https://source.unsplash.com/random/1250x720/?blogger-male")
     artist.photos.attach(io: file, filename: "image.png", content_type: "image/png")
     artist.save
   end
   i += 1
 end
 
-puts "Customers created"
+puts "5 young boyfriends created"
+## Old boyfriends
+old_boyfriends.each_with_index do |user, i|
+  customer = Customer.create(
+    first_name: Faker::Name.unique.male_first_name,
+    last_name: Faker::Name.unique.last_name,
+    address: ADDRESSES_OLD_BF[i],
+    age: rand(36..60),
+    user_id: user.id
+  )
+  avatar = URI.open("https://source.unsplash.com/random/450x450/?profile-man")
+  customer.avatar.attach(io: avatar, filename: "image.png", content_type: "image/png")
+  customer.save
 
-puts "Artists created"
+  artist = Artist.create(
+    name: customer.first_name,
+    category: 'Boyfriend',
+    address: customer.address,
+    description: Faker::TvShows::Friends.quote,
+    price: rand(99..299),
+    age: customer.age,
+    user_id: user.id
+  )
+  3.times do
+    file = URI.open("https://source.unsplash.com/random/1250x720/?blogger-male")
+    artist.photos.attach(io: file, filename: "image.png", content_type: "image/png")
+    artist.save
+  end
+  i += 1
+end
+
+puts "5 older boyfriends created"
+
+## Family
+family.each_with_index do |user, i|
+  customer = Customer.create(
+    first_name: Faker::Name.unique.first_name,
+    last_name: Faker::Name.unique.last_name,
+    address: ADDRESSES_FAMILY[i],
+    age: rand(18..60),
+    user_id: user.id
+  )
+  avatar = URI.open("https://source.unsplash.com/random/350x350/?profile-person")
+  customer.avatar.attach(io: avatar, filename: "image.png", content_type: "image/png")
+  customer.save
+
+  artist = Artist.create(
+    name: customer.first_name,
+    category: 'Family',
+    address: customer.address,
+    description: Faker::TvShows::Friends.quote,
+    price: rand(99..299),
+    age: customer.age,
+    user_id: user.id
+  )
+  3.times do
+    file = URI.open("https://source.unsplash.com/random/1250x720/?family")
+    artist.photos.attach(io: file, filename: "image.png", content_type: "image/png")
+    artist.save
+  end
+  i += 1
+end
+
+puts "10 family artists created"
+
+puts "All customers created"
+
+puts "All artists created"
+
+
+# # Reviews for boyfriends
+# 100.times do
+#   Review.create(
+#     comment: "Horse",
+#     rating: "Animals",
+#     customer_id: "horse.jpg",
+#     artist_id: rand(100..300)
+#   )
+# end
 
  Add.create(
    name: "Horse",
    category: "Animals",
    picture_url: "horse.jpg",
-   price: rand(5..100)
+   price: rand(100..300)
  )
  Add.create(
    name: "Limo",
    category: "Vehicles",
    picture_url: "limo.jpg",
-   price: rand(5..100)
+   price: rand(300..1000)
  )
  Add.create(
    name: "Chocolates",
    category: "Food",
    picture_url: "chocolates.jpg",
-   price: rand(5..100)
+   price: rand(20..200)
  )
  Add.create(
    name: "Picnic",
    category: "Food",
    picture_url: "picnic.jpg",
-   price: rand(5..100)
+   price: rand(50..200)
  )
  Add.create(
    name: "Flowers",
    category: "Decoration",
    picture_url: "flowers.jpg",
-   price: rand(5..100)
+   price: rand(50..300)
  )
  Add.create(
    name: "Forest house",
    category: "Location",
    picture_url: "location.jpg",
-   price: rand(5..100)
+   price: rand(300..1000)
  )
  Add.create(
    name: "Photo pack",
    category: "Media",
    picture_url: "photo_pack.jpg",
-   price: rand(5..100)
+   price: rand(100..1000)
  )
  Add.create(
    name: "Video pack",
    category: "Media",
    picture_url: "video_pack.jpg",
-   price: rand(5..100)
+   price: rand(300..1000)
  )
 
  puts "Adds created"
