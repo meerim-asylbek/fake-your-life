@@ -1,5 +1,7 @@
 <div class="container">
 <div class="row mt-5 mb-0">
+  <% artist = Artist.find_by(user_id: current_user)  %>
+  <% customer = Customer.find_by(user_id: current_user)  %>
   <h1 class="display-1 mt-5">Details of your booking <%= @customer.first_name %></h1>
   <div class="col-4">
     <div class="neu-form mt-5">
