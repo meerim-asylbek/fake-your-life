@@ -6,23 +6,22 @@ class ReviewsController < ApplicationController
     @artist = Artist.find(params[:artist_id])
     @review.artist_id = @artist.id
     @review.customer_id = @customer.id
-    if @review.save
-      redirect_to artist_path(@artist)
-    else
-      @review = Review.new
-      render 'artists/show', status: :unprocessable_entity
-    end
+    #if @review.save
+      #redirect_to artist_path(@artist)
+    #else
+      #@review = Review.new
+      #render 'artists/show', status: :unprocessable_entity
+    #end
 
   respond_to do |format|
     if @review.save
-      format.html { redirect_to artist_path(@restaurant) }
+      format.html { redirect_to artist_path(@artist) }
       format.json # Follow the classic Rails flow and look for a create.json view
     else
-      format.html { render "restaurants/show", status: :unprocessable_entity }
+      format.html { render "artists/show", status: :unprocessable_entity }
       format.json # Follow the classic Rails flow and look for a create.json view
     end
   end
-,
   end
 
   def edit
