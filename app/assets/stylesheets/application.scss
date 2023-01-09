@@ -7,13 +7,11 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome";
 @import "star-rating.js/dist/star-rating.css";
-@import "tom-select/dist/css/tom-select.min.css";
 @import "@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "components/background";
 
 
 html {
@@ -34,5 +32,9 @@ a:hover {
 }
 
 .fa-star-half-stroke {
+	color: #FFB901;
+}
+
+.test {
 	color: #FFB901;
 }
