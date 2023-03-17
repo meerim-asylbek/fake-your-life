@@ -44,9 +44,10 @@
         <% end %>
         <% hires.each do |hire| %>
         <% @customer = hire.customer %>
-          <%= link_to hire_path(hire) do %>
             <div class="card-hire">
+          <%= link_to hire_path(hire) do %>
               <%= cl_image_tag hire.customer.avatar.key, height: 50, width: 50 %>
+          <% end %>
               <div class="card-hire-infos">
                 <%= link_to hire.customer.first_name, profile_path(@customer) %>
                 <p class="mb-0"><%= hire.start_date %></p>
@@ -54,7 +55,6 @@
                 <p class="mb-0"><%= hire.total_price %>€</p>
               </div>
             </div>
-          <% end %>
         <% end %>
       </div>
       <hr>

@@ -28,7 +28,9 @@
           <% end %>
           <% @customer.hires.each do |hire| %>
             <div class="card-hire">
-            <%= cl_image_tag hire.artist.photos[0].key, height: 50, width: 50 %>
+            <%= link_to hire_path(hire) do %>
+             <%= cl_image_tag hire.artist.photos[0].key, height: 50, width: 50 %>
+          <% end %>
               <div class="card-hire-infos">
                 <p class="mb-0"><%= link_to hire.artist.name, artist_path(hire.artist) %></p>
                 <p class="mb-0"><%= hire.start_date %></p>

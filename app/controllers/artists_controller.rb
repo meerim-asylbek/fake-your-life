@@ -32,7 +32,8 @@ class ArtistsController < ApplicationController
 
   def show
     @customer = Customer.find_by(user_id: current_user.id)
-    @review = Review.new()
+    @review = Review.new
+    raise
     if Hire.find_by(customer_id: @customer.id, artist_id: @artist.id)
       @hire = Hire.find_by(customer_id: @customer.id, artist_id: @artist.id)
     else
